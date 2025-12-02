@@ -1,9 +1,9 @@
-import { Home, Sun, Wind, Droplet, Zap, Network } from 'lucide-react';
+import { Wifi, Sun, AirVent, Droplet, Zap, Network, Flame } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const services = [
   {
-    icon: Home,
+    icon: Wifi,
     title: 'Smart Home Systems',
     description: 'Advanced home automation for modern living',
     items: ['Smart Lighting', 'Smart Locks', 'Voice Control', 'Home Theater', 'HVAC Automation'],
@@ -19,7 +19,7 @@ const services = [
     bgColor: 'bg-primary/10',
   },
   {
-    icon: Wind,
+    icon: AirVent,
     title: 'HVAC & Chiller',
     description: 'Climate control and air quality solutions',
     items: ['Ducting Fabrication', 'Chillers', 'Air Handling Units', 'Maintenance'],
@@ -33,6 +33,14 @@ const services = [
     items: ['Water & Drainage Systems', 'Heaters', 'Solar Hot Water', 'Leak Detection'],
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
+  },
+    {
+    icon: Flame,
+    title: 'Fire Fighting',
+    description: 'Comprehensive fire safety solutions',
+    items: ['Fire Suppression Systems', 'Fire Alarms', 'Emergency Lighting', 'Sprinkler Systems'],
+    color: 'text-red-600',
+    bgColor: 'bg-red-50',
   },
   {
     icon: Zap,
