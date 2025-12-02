@@ -8,7 +8,6 @@ const Marquee: React.FC = () => {
       <div className="marquee-content">
         <img src={marqueeImage} alt="Marquee" />
         <img src={marqueeImage} alt="Marquee" />
-        <img src={marqueeImage} alt="Marquee" />
       </div>
     </div>
   );
