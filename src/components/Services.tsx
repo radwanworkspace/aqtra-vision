@@ -3,20 +3,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const services = [
   {
-    icon: Wifi,
-    title: 'Smart Home Systems',
-    description: 'Advanced home automation for modern living',
-    items: ['Smart Lighting', 'Smart Locks', 'Voice Control', 'Home Theater', 'HVAC Automation'],
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-50',
-  },
-  {
     icon: Leaf,
     title: 'Solar Energy',
     description: 'Sustainable power solutions for your future',
     items: ['Solar Panel Installation', 'On/Off/Hybrid Grid Systems', 'Battery Storage', 'EPC & Maintenance'],
     color: 'text-primary',
     bgColor: 'bg-primary/10',
+  },
+  {
+    icon: Wifi,
+    title: 'Smart Home Systems',
+    description: 'Advanced home automation for modern living',
+    items: ['Smart Lighting', 'Smart Locks', 'Voice Control', 'Home Theater', 'HVAC Automation'],
+    color: 'text-blue-500',
+    bgColor: 'bg-blue-50',
   },
   {
     icon: AirVent,
