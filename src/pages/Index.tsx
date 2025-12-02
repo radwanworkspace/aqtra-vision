@@ -7,11 +7,12 @@ import Services from '@/components/Services';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import Marquee from '@/components/Marquee';
 
 const Index = () => {
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 500,
       // once: true,
       easing: 'ease-out',
       offset: 100,
@@ -24,6 +25,7 @@ const Index = () => {
       <main>
         <Hero />
         <Services />
+        <Marquee />
         <About />
         <Contact />
       </main>

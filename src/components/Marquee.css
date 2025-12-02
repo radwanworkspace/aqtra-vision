@@ -1,0 +1,25 @@
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #f0f0f0; /* Optional: Add a background color */
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee-scroll 80s linear infinite;
+}
+
+.marquee-content img {
+  /* height: 200px; */
+  width: 3000px;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-3000px);
+  }
+}
