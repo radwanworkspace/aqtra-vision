@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle } from 'lucide-react';
 
 import logoHorizontal from '@/assets/logo-icon.png';
+import { Link } from 'react-router-dom';
 
 const CustomHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,13 +37,12 @@ const CustomHeader: React.FC = () => {
 
         {/* Center Navigation */}
         <div className="hidden md:flex items-center gap-10">
-          <a
-            href="#services"
-            onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
+          <Link
+            to="services"
             className="hover:text-primary transition-colors font-medium"
           >
             Services
-          </a>
+          </Link>
           <a
             href="#about"
             onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}

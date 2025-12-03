@@ -8,6 +8,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import HeroIntro from '@/components/HeroIntro';
 import CustomHeader from '@/components/CustomHeader';
+import Layout from '@/components/Layout';
 
 const Index = () => {
   useEffect(() => {
@@ -20,19 +21,21 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      {/* <Header /> */}
-      <CustomHeader />
-      <main>
-        {/* <Hero /> */}
-        <HeroIntro />
-       
-        <Services />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Layout>
+      <div className="min-h-screen">
+        {/* <Header /> */}
+        <CustomHeader />
+        <main>
+          {/* <Hero /> */}
+          <HeroIntro />
+         
+          <Services />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </Layout>
   );
 };
 

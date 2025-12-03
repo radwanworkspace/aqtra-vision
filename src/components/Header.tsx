@@ -71,7 +71,7 @@ const Header = () => {
           <div className="absolute top-full left-0 right-0 bg-white shadow-xl md:hidden">
             <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
               <a
-                href="#services"
+                href="/services"
                 onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
                 className="text-foreground hover:text-primary transition-colors font-medium py-2"
               >

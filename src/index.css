@@ -146,3 +146,9 @@ All colors MUST be HSL.
     @apply transition-transform duration-300 hover:-translate-y-2;
   }
 }
+
+
+.dark-body {
+  background-color: #121212; /* Dark background color */
+  color: #ffffff; /* Optional: Default text color */
+}
