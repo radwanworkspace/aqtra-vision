@@ -1,0 +1,44 @@
+/* Footer Styles */
+footer {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+}
+
+
+footer h5 {
+  color: var(--bs-light);
+}
+
+footer p {
+  color: var(--bs-muted);
+}
+
+footer ul li {
+  color: var(--bs-muted);
+  transition: color 0.3s ease;
+}
+
+footer ul li:hover {
+  color: var(--bs-light);
+}
+
+footer a {
+  color: var(--bs-light);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--bs-primary);
+  transform: scale(1.1);
+}
+
+footer .btn-outline-light {
+  border-color: var(--bs-light);
+  color: var(--bs-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer .btn-outline-light:hover {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+}

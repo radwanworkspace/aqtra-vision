@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Marquee from './Marquee';
 import './HeroIntro.css';
 
 import BgVideo from '@/assets/intro-bg.mp4';
 
 const HeroIntro: React.FC = () => {
+  const [videoDimensions, setVideoDimensions] = useState({ width: '100%', height: '100%' });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const newWidth = Math.max(50, 100 - scrollY / 10) + '%';
+      const newHeight = Math.max(50, 100 - scrollY / 10) + '%';
+      setVideoDimensions({ width: newWidth, height: newHeight });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section className="hero-intro">
-      <video className="hero-video" autoPlay loop muted>
-        <source src={BgVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="hero-content">
-        <h1 className="hero-title">Welcome to Our Vision</h1>
-        <p className="hero-subtitle">Innovating the future, one step at a time</p>
+    <>
+      <div className='container mt-5 mb-4'>
+        <div className="row">
+          <div className="col-md-6 my-5 text-center hero-text" data-aos="fade-up">
+            <h1 className="display-4  text-dark">Accuracy and Quality</h1>
+            <p>Innovating the future, one step at a time</p>
+          </div>
+          <div className="col-md-6 my-5 text-center hero-text" data-aos="fade-up">
+            <p className="mb-4">We deliver precise, reliable engineering and construction support services built on efficiency and expertise. Our team is committed to exceptional quality, timely execution, and trusted project results.</p>
+          </div>
+        </div>
       </div>
-      {/* <div className="hero-marquee">
-        <Marquee />
-      </div> */}
-    </section>
+
+      <section className="hero-intro d-flex justify-content-center align-items-center" style={{ width: videoDimensions.width, height: videoDimensions.height }}>
+        <div className="hero-overlay"></div>
+        <video
+          className="hero-video"
+          
+          autoPlay
+          loop
+          muted
+        >
+          <source src={BgVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <div className="container-fluid mt-5">
       {/* Hero Section */}
-      <section className="mb-5">
+      <section className="mb-5 d-flex flex-column justify-content-center align-items-center">
         <HeroIntro />
       </section>
 

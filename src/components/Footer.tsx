@@ -1,109 +1,97 @@
-import { Facebook, Instagram, Linkedin, X } from 'lucide-react';
+import './Footer.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import logoVerticalLight from '@/assets/logo-vertical-light.png';
-import watermarkText from '@/assets/watermark-text.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     services: [
-      'Smart Home Systems',
-      'Solar Energy',
-      'HVAC & Chiller',
-      'Plumbing',
-      'Electrical',
-      'Network & IT',
+      { name: 'Smart Home Systems' },
+      { name: 'Solar Energy' },
+      { name: 'HVAC & Chiller' },
+      { name: 'Plumbing' },
+      { name: 'Electrical' },
+      { name: 'Network & IT' },
     ],
-    company: ['About Us', 'Contact', 'Projects', 'Careers'],
+    company: [
+      { name: 'About Us' },
+      { name: 'Contact' },
+      { name: 'Projects' },
+      { name: 'Careers' },
+    ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/AQTRACO', label: 'Facebook' },
-    { icon: Instagram, href: 'https://www.instagram.com/aqtra.co/', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/company/aqtraco', label: 'LinkedIn' },
-    { icon: X, href: 'https://x.com/AQTRACO', label: 'Twitter' },
+    { icon: faFacebookF, href: 'https://www.facebook.com/AQTRACO', label: 'Facebook' },
+    { icon: faInstagram, href: 'https://www.instagram.com/aqtra.co/', label: 'Instagram' },
+    { icon: faLinkedinIn, href: 'https://www.linkedin.com/company/aqtraco', label: 'LinkedIn' },
+    { icon: faTwitter, href: 'https://x.com/AQTRACO', label: 'Twitter' },
   ];
 
   return (
-    <footer className="bg-foreground text-white">
-     
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-dark text-white py-5">
+      <div className="container">
+        <div className="row mb-4">
           {/* Company Info */}
-          <div>
-            <img src={logoVerticalLight} alt="AQTRA Logo" className="h-32 w-auto mb-4" />
-            <p className="text-white/70 text-sm leading-relaxed">
+          <div className="col-lg-4 mb-3">
+            <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-3" style={{ height: '100px' }} />
+            <p >
               Integrated engineering solutions for modern living and business operations.
             </p>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Services</h4>
-            <ul className="space-y-2">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <a href="#services" className="text-white/70 hover:text-primary transition-colors text-sm">
-                    {link}
-                  </a>
+          {/* Services Links */}
+          <div className="col-lg-4 mb-3">
+            <h5 className="text-primary">Services</h5>
+            <ul className="list-unstyled">
+              {footerLinks.services.map((service, index) => (
+                <li key={index} className="d-flex align-items-center">
+                  {service.name}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Company</h4>
-            <ul className="space-y-2">
+          {/* Company Links */}
+          <div className="col-lg-4 mb-3">
+            <h5 className="text-primary">Company</h5>
+            <ul className="list-unstyled">
               {footerLinks.company.map((link, index) => (
-                <li key={index}>
-                  <a href="#" className="text-white/70 hover:text-primary transition-colors text-sm">
-                    {link}
-                  </a>
+                <li key={index} className="d-flex align-items-center">
+                  {link.name}
                 </li>
               ))}
             </ul>
           </div>
+        </div>
 
-          {/* Contact & Social */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Connect With Us</h4>
-            <div className="space-y-3 mb-6">
-              <p className="text-white/70 text-sm">info@aqtraco.com</p>
-              <p className="text-white/70 text-sm">+966 056 240 5666</p>
-            </div>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    aria-label={social.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
-            </div>
+        {/* Social Links */}
+        <div className="row">
+          <div className="col-12 d-flex justify-content-center flex-row text-center">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-light d-flex align-items-center justify-content-center rounded-circle mx-2"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <FontAwesomeIcon icon={social.icon} />
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-3">
-              <img src={watermarkText} alt="AQTRA" className="h-6 w-auto opacity-50" />
-            </div>
-            <p className="text-white/50 text-sm text-center">
-              © {currentYear} AQTRA. All rights reserved.
-            </p>
+        {/* Copyright */}
+        <div className="row mt-4">
+          <div className="col text-center">
+            <p className="mb-0">&copy; {currentYear} AQTRA. All rights reserved.</p>
           </div>
         </div>
-        
       </div>
     </footer>
   );

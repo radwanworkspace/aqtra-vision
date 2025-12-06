@@ -4,12 +4,13 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faLinkedinIn, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 import logoLight from '@/assets/logo-icon.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './CustomHeader.css';
 
 const CustomHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +35,7 @@ const CustomHeader: React.FC = () => {
             style={{ height: '50px', width: '50px' }}
             className="w-auto"
           />
-          <span className="ms-2 fw-bold fs-4">AQTRA</span>
+          <span className="ms-2 fs-4">AQTRA</span>
         </a>
 
         {/* Toggler for Mobile */}
@@ -54,27 +55,42 @@ const CustomHeader: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <Link to="home" className="nav-link">
+              <Link
+                to="/"
+                className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="about" className="nav-link">
+              <Link
+                to="about"
+                className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
+              >
                 About
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="services" className="nav-link">
+              <Link
+                to="services"
+                className={`nav-link ${location.pathname === '/services' ? 'active' : ''}`}
+              >
                 Services
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="portfolio" className="nav-link">
+              <Link
+                to="portfolio"
+                className={`nav-link ${location.pathname === '/portfolio' ? 'active' : ''}`}
+              >
                 Portfolio
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="contact" className="nav-link">
+              <Link
+                to="contact"
+                className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
+              >
                 Contact
               </Link>
             </li>
@@ -85,10 +101,11 @@ const CustomHeader: React.FC = () => {
         <div className="d-flex align-items-center gap-3">
           <a
             href="tel:+966562405666"
-            className={`d-flex text-decoration-none border-end text-primary pe-3 border-success align-items-center gap-2 fs-4`}
+            className="d-flex text-decoration-none text-primary align-items-center gap-2 fs-5"
           >
             <FontAwesomeIcon icon={faPhone} size="lg" /> +966 (056) 2405 666
           </a>
+          <span className="vr"></span>
           <a
             href="https://wa.me/966562405666"
             target="_blank"

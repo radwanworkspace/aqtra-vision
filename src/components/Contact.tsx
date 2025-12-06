@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import Marquee from './Marquee';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Contact.css';
+import mapImage from '@/assets/map-background.jpg';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,9 +14,13 @@ const Contact = () => {
     message: '',
   });
 
+  // useEffect(() => {
+  //   AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+  // }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -59,57 +62,60 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-secondary/30">
-       
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="mb-4 text-foreground">Get In Touch</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+    <section id="contact" className="py-5 bg-light position-relative">
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+
+      ></div>
+
+      <div className="container position-relative" style={{ zIndex: 1 }}>
+        <div className="text-center mb-4" data-aos="fade-up">
+          <h2 className="mb-3">Get In Touch</h2>
+          <p className="text-muted">
             Ready to start your project? Contact us today for a consultation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="row g-4">
           {/* Contact Information */}
-          <div data-aos="fade-right">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">Contact Information</h3>
-            <p className="text-foreground/70 mb-8">
+
+          <div className="col-lg-6" data-aos="fade-right" >
+            <h3 className="h5 mb-3">Contact Information</h3>
+            <p className="text-muted mb-4">
               Reach out to our team for any inquiries about our services or to discuss your next project.
             </p>
 
-            <div className="space-y-6">
+            <ul className="list-unstyled">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
-                  <a
-                    key={index}
-                    href={info.link}
-                    target='_blank'
-                    className="flex items-start gap-4 p-4 bg-white rounded-lg hover:shadow-lg transition-all hover-lift"
-                  >
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-primary" />
+                  <li key={index} className="d-flex align-items-start mb-3 custom-list-item">
+                    <div className="me-3">
+                      <Icon className="text-primary" size={24} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">{info.title}</h4>
-                      <p className="text-foreground/70">{info.content}</p>
+                      <a href={info.link} target='_blank' rel="noopener noreferrer" className="text-muted text-decoration-none">
+                        <h6 className="fw-bold mb-1">{info.title}</h6>
+                        {info.content}
+                      </a>
                     </div>
-                  </a>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
 
           {/* Contact Form */}
-          <div data-aos="fade-left">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+          <div className="col-lg-6" data-aos="fade-left">
+            <form onSubmit={handleSubmit} className="p-4 border rounded bg-white shadow-sm">
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
                   Full Name *
                 </label>
-                <Input
+                <input
                   id="name"
                   type="text"
+                  className="form-control"
                   placeholder="Your name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -117,13 +123,14 @@ const Contact = () => {
                 />
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
                   Email Address *
                 </label>
-                <Input
+                <input
                   id="email"
                   type="email"
+                  className="form-control"
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -131,41 +138,38 @@ const Contact = () => {
                 />
               </div>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+              <div className="mb-3">
+                <label htmlFor="phone" className="form-label">
                   Phone Number
                 </label>
-                <Input
+                <input
                   id="phone"
                   type="tel"
+                  className="form-control"
                   placeholder="+966 XX XXX XXXX"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+              <div className="mb-3">
+                <label htmlFor="message" className="form-label">
                   Message *
                 </label>
-                <Textarea
+                <textarea
                   id="message"
+                  className="form-control"
                   placeholder="Tell us about your project..."
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
-                />
+                ></textarea>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                size="lg"
-              >
-                <Send className="w-5 h-5 mr-2" />
-                Send Message
-              </Button>
+              <button type="submit" className="btn btn-primary w-100">
+                <Send className="me-2" size={18} /> Send Message
+              </button>
             </form>
           </div>
         </div>
