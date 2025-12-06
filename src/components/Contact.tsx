@@ -62,7 +62,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-5 bg-light position-relative">
+    <section id="contact" className="py-5 position-relative">
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
 

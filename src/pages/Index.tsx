@@ -23,17 +23,17 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="mb-5">
+      <section>
         <Services />
       </section>
 
       {/* About Section */}
-      <section className="mb-5">
+      <section>
         <About />
       </section>
 
       {/* Contact Section */}
-      <section className="mb-5">
+      <section >
         <Contact />
       </section>
     </div>
