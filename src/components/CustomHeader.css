@@ -9,6 +9,7 @@
 }
 .navbar-transparent {
     /* background-color: transparent !important; */
+    background-color: var(--background-secondary-alt);
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 .vr {

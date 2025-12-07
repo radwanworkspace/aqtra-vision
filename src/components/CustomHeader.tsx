@@ -11,21 +11,32 @@ import './CustomHeader.css';
 
 const CustomHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollPosition, setLastScrollPosition] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollPosition = window.scrollY;
+      setIsScrolled(currentScrollPosition > 50);
+
+      if (currentScrollPosition > 300 && currentScrollPosition > lastScrollPosition) {
+        setIsNavbarVisible(false); // Hide navbar on scroll down if scrolled more than 300px
+      } else if (currentScrollPosition <= 300 || currentScrollPosition < lastScrollPosition) {
+        setIsNavbarVisible(true); // Show navbar on scroll up or if scrolled less than 300px
+      }
+      setLastScrollPosition(currentScrollPosition);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollPosition]);
 
   return (
     <nav
       className={`navbar navbar-expand-lg fixed-top ${
         isScrolled ? 'navbar-scrolled' : 'navbar-transparent'
-      }`}
+      } ${isNavbarVisible ? 'visible' : 'invisible'}`}
+      style={{ transition: 'visibility 0.3s, opacity 0.3s', opacity: isNavbarVisible ? 1 : 0 }}
     >
       <div className="container">
         {/* Logo and Website Name */}
@@ -99,7 +110,7 @@ const CustomHeader: React.FC = () => {
         </div>
 
         {/* Right Buttons */}
-        <div className="d-flex align-items-center gap-3">
+        <div className="w-100 justify-content-center d-flex gap-3 ">
           <a
             href="tel:+966562405666"
             className="d-flex text-decoration-none text-primary align-items-center gap-2 "
