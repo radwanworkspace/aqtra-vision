@@ -1,6 +1,5 @@
 .service-video-section {
   padding: 2rem 1rem;
-  background-color: #121212; /* Dark background */
 }
 
 .service-video-grid {
@@ -11,23 +10,23 @@
 
 .service-video-box {
   position: relative;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Updated shadow for dark theme */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
   border-radius: 0.75rem;
   overflow: hidden;
-  background-color: #1e1e1e; /* Dark box background */
+  /* background-color: #1e1e1e;  */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-video-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7); /* Enhanced hover shadow */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
 }
 
 .video-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  background-color: #000;
+  padding-top: 56.25%; 
+  /* background-color: #000; */
 }
 
 .service-video {
@@ -37,7 +36,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem; /* Rounded corners for video */
+  border-radius: 0.5rem; 
 }
 
 .service-logo {
@@ -61,5 +60,5 @@
   font-size: 1.25rem;
   font-weight: 500;
   margin: 1rem 0 0;
-  color: #ffffff; /* White text for dark theme */
+  /* color: #ffffff;  */
 }

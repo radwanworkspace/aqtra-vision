@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ServiceVideoSection from '@/components/ServiceVideoSection';
 import Layout from '@/components/Layout';
 import HeaderBanner from '@/components/HeaderBanner';
+import HeaderImage from '@/assets/hero-bg-2.jpg';
 
 const services = [
   {
@@ -15,6 +16,11 @@ const services = [
     logoUrl: '/logos/service2-logo.png',
   },
   {
+    videoUrl: '/videos/service3.mp4',
+    title: 'Service 3',
+    logoUrl: '/logos/service3-logo.png',
+  },
+    {
     videoUrl: '/videos/service3.mp4',
     title: 'Service 3',
     logoUrl: '/logos/service3-logo.png',
@@ -34,12 +40,10 @@ const ServicesPage: React.FC = () => {
       <HeaderBanner
         title="Our Services"
         subtitle="Explore the wide range of services we offer to meet your needs."
-        backgroundImage="/path-to-your-banner-image.jpg"
+        backgroundImage={HeaderImage}
       />
-      <div className="bg-dark">
-        <h1 className="text-center text-4xl font-bold my-8 text-white">
-          Our Services
-        </h1>
+      <div>
+ 
         <ServiceVideoSection services={services} />
       </div>
     </>

@@ -1,7 +1,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import logoVerticalLight from '@/assets/logo-vertical-light.png';
+import logoVerticalLight from '@/assets/AQTRA-LOGO-LIGHT-TEXT.png';
 import { Icon } from 'lucide-react';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import './Footer.css';

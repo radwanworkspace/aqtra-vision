@@ -5,6 +5,7 @@ import { faInstagram, faLinkedinIn, faWhatsapp } from '@fortawesome/free-brands-
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import logoLight from '@/assets/logo-icon.png';
+import LogoText from '@/assets/AQTRA-LOGO-TEXT.png';
 import { Link, useLocation } from 'react-router-dom';
 
 import './CustomHeader.css';
@@ -44,10 +45,16 @@ const CustomHeader: React.FC = () => {
           <img
             src={logoLight}
             alt="AQTRA Logo"
-            style={{ height: '50px', width: '50px' }}
+            style={{ height: '30px', width: '30px' }}
             className="w-auto"
           />
-          <span className="ms-2 fs-4">AQTRA</span>
+          <span className="vr" ></span>
+              <img
+            src={LogoText}
+            alt="AQTRA Logo"
+            style={{ height: '30px' }}
+            className="w-auto"
+          />
         </a>
 
         {/* Toggler for Mobile */}
@@ -64,7 +71,7 @@ const CustomHeader: React.FC = () => {
         </button>
 
         {/* Center Navigation */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse w-100 navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <Link
