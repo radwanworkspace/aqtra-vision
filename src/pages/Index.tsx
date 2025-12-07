@@ -5,6 +5,7 @@ import Services from '@/components/Services';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import HeroIntro from '@/components/HeroIntro';
+import NewsletterSection from '@/components/NewsletterSection';
 
 const Index = () => {
   useEffect(() => {
@@ -22,19 +23,20 @@ const Index = () => {
         <HeroIntro />
       </section>
 
-      {/* Services Section */}
-      <section>
-        <Services />
-      </section>
-
       {/* About Section */}
       <section>
         <About />
       </section>
 
+      {/* Services Section */}
+      <section>
+        <Services />
+      </section>
+
       {/* Contact Section */}
       <section >
-        <Contact />
+        {/* <Contact /> */}
+        <NewsletterSection />
       </section>
     </div>
   );
