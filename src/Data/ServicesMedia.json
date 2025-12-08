@@ -3,29 +3,34 @@
         "id": "solar-energy",
         "title": "Solar Energy",
         "description": "<p>Solar energy is a clean and renewable source of power that harnesses the sun's rays to generate electricity. It is an essential solution for reducing carbon emissions and achieving energy independence.</p>",
-        "videoUrl": "/videos/solar_energy.mp4",
+        "videoUrl": "/src/assets/solar/1.mp4",
         "headerImage": "/src/assets/solar/1.jpg",
         "images": [
             "/src/assets/solar/1.jpg",
-            "/src/assets/solar/2.jpg"
+            "/src/assets/solar/2.jpg",
+            "/src/assets/solar/3.jpg",
+            "/src/assets/solar/4.jpg"
         ]
     },
     {
         "id": "smart-home-systems",
         "title": "Smart Home Systems",
         "description": "<p>Smart home systems provide advanced automation for modern living, including smart lighting, locks, and voice-controlled devices. They enhance convenience, security, and energy efficiency.</p>",
-        "videoUrl": "/videos/smart_home_systems.mp4",
-        "headerImage": "/src/assets/smart_home/1.jpg",
+        "videoUrl": "/src/assets/smart_home/1.mp4",
+        "headerImage": "/src/assets/smart_home/2.jpg",
         "images": [
             "/src/assets/smart_home/1.jpg",
-            "/src/assets/smart_home/2.jpg"
+            "/src/assets/smart_home/2.jpg",
+            "/src/assets/smart_home/3.jpg",
+            "/src/assets/smart_home/4.jpg",
+            "/src/assets/smart_home/5.jpg"
         ]
     },
     {
         "id": "hvac-chiller",
         "title": "HVAC & Chiller",
         "description": "<p>HVAC and chiller systems ensure optimal climate control and air quality. They are vital for maintaining comfortable and healthy indoor environments in residential and commercial spaces.</p>",
-        "videoUrl": "/videos/hvac_chiller.mp4",
+        "videoUrl": "/src/assets/hvac/1.mp4",
         "headerImage": "/src/assets/hvac/8.jpg",
         "images": [
             "/src/assets/hvac/1.jpg",
@@ -43,44 +48,67 @@
         "id": "plumbing",
         "title": "Plumbing",
         "description": "<p>Plumbing systems are essential for water supply and drainage. They include installations for heaters, leak detection, and solar hot water systems, ensuring efficient water management.</p>",
-        "videoUrl": "/videos/plumbing.mp4",
-        "headerImage": "/src/assets/plumbing/1.jpg",
+        "videoUrl": "/src/assets/plumbing/1.mp4",
+        "headerImage": "/src/assets/plumbing/3.jpg",
         "images": [
             "/src/assets/plumbing/1.jpg",
-            "/src/assets/plumbing/2.jpg"
+            "/src/assets/plumbing/2.jpg",
+            "/src/assets/plumbing/3.jpg",
+            "/src/assets/plumbing/4.jpg",
+            "/src/assets/plumbing/5.jpg",
+            "/src/assets/plumbing/6.jpg",
+            "/src/assets/plumbing/7.webp",
+            "/src/assets/plumbing/8.webp",
+            "/src/assets/plumbing/9.jpg",
+            "/src/assets/plumbing/10.jpg",
+            "/src/assets/plumbing/11.jpg",
+            "/src/assets/plumbing/12.jpg"
         ]
     },
     {
         "id": "fire-fighting",
         "title": "Fire Fighting",
         "description": "<p>Fire fighting systems provide comprehensive safety solutions, including fire alarms, suppression systems, and emergency lighting to protect lives and property.</p>",
-        "videoUrl": "/videos/fire_fighting.mp4",
-        "headerImage": "/src/assets/fire/1.jpg",
+        "videoUrl": "/src/assets/fire/1.mp4",
+        "headerImage": "/src/assets/fire/4.jpg",
         "images": [
             "/src/assets/fire/1.jpg",
-            "/src/assets/fire/2.jpg"
+            "/src/assets/fire/2.jpg",
+            "/src/assets/fire/3.jpg",
+            "/src/assets/fire/4.jpg",
+            "/src/assets/fire/5.jpg",
+            "/src/assets/fire/6.jpg",
+            "/src/assets/fire/fire-fighting-1.jpg",
+            "/src/assets/fire/fire-fighting-2.jpg",
+            "/src/assets/fire/fire-fighting-3.jpg"
         ]
     },
     {
         "id": "electrical",
         "title": "Electrical",
         "description": "<p>Electrical installations include power distribution, panels, lighting, and backup systems. They ensure reliable and safe electricity supply for various applications.</p>",
-        "videoUrl": "/videos/electrical.mp4",
+        "videoUrl": "/src/assets/electrical/1.mp4",
         "headerImage": "/src/assets/electrical/1.jpg",
         "images": [
             "/src/assets/electrical/1.jpg",
-            "/src/assets/electrical/2.jpg"
+            "/src/assets/electrical/2.jpg",
+            "/src/assets/electrical/3.jpg",
+            "/src/assets/electrical/4.webp",
+            "/src/assets/electrical/5.jpg"
         ]
     },
     {
         "id": "network-security",
         "title": "Network & Security",
         "description": "<p>Network and security solutions include structured cabling, Wi-Fi, CCTV, and access control systems. They provide modern IT infrastructure and enhanced security.</p>",
-        "videoUrl": "/videos/network_security.mp4",
+        "videoUrl": "/src/assets/network/1.mp4",
         "headerImage": "/src/assets/network/1.jpg",
         "images": [
             "/src/assets/network/1.jpg",
-            "/src/assets/network/2.jpg"
+            "/src/assets/network/2.jpg",
+            "/src/assets/network/3.jpg",
+            "/src/assets/network/4.jpg",
+            "/src/assets/network/5.jpg"
         ]
     }
 ]
