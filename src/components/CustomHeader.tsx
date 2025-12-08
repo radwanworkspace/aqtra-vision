@@ -83,8 +83,8 @@ const CustomHeader: React.FC = () => {
             </li>
             <li className="nav-item">
               <Link
-                to="about"
-                className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
+                to="/about-us"
+                className={`nav-link ${location.pathname === '/about-us' ? 'active' : ''}`}
               >
                 About
               </Link>

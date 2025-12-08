@@ -30,10 +30,11 @@ const Footer = () => {
       { name: 'Network & IT' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
+      { name: 'About Us', href: '/about-us' },
       { name: 'Contact', href: '/contact' },
       { name: 'Projects', href: '/projects' },
       { name: 'Careers', href: '/careers' },
+      { name: 'Saudi Vision 2030', href: '/saudi-vision-2030' },
     ],
   };
 
@@ -52,7 +53,6 @@ const Footer = () => {
           <div className="row mb-4">
             <div className='col-12'>
               <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4 float-start" style={{ height: '100px' }} />
-
             </div>
             {/* Company Info */}
             <div className="col-lg-4 mb-3">
