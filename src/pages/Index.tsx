@@ -11,6 +11,7 @@ import ParallaxImageSection from '@/components/ParallaxImageSection';
 
 import ParallaxVideo from '@/assets/intro-bg.mp4';
 import ParallaxImage from '@/assets/network-ftth-cables.jpg';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   useEffect(() => {
@@ -41,10 +42,16 @@ const Index = () => {
             Comprehensive engineering solutions tailored to your needs
           </p>
         </div>
-        <Services />
+        <Services showFeaturedOnly={true} />
+
+        <div className="text-center mt-4" data-aos="fade-up">
+          <Link to="/services" className="btn btn-primary rounded-pill px-4 py-2 ">
+            View All Services
+          </Link>
+        </div>
       </section>
 
-      <ParallaxImageSection imageUrl={ParallaxImage} heading="Your Text Here" summary={'Your summary here'} />
+      {/* <ParallaxImageSection imageUrl={ParallaxImage} heading="Your Text Here" summary={'Your summary here'} /> */}
       {/* <ParallaxVideoSection videoUrl={ParallaxVideo} text='asasas' /> */}
 
       {/* Contact Section */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ServiceVideoSection from '@/components/ServiceVideoSection';
 import Layout from '@/components/Layout';
 import HeaderBanner from '@/components/HeaderBanner';
@@ -36,6 +36,11 @@ const services = [
 ];
 
 const ServicesPage: React.FC = () => {
+
+    useEffect(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, []);
+
   return (
     <>
       <HeaderBanner

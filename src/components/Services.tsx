@@ -16,7 +16,7 @@ const iconMap = {
   FireExtinguisher,
 };
 
-const Services = ({ col = "col-md-6 col-lg-4" }) => {
+const Services = ({ col = "col-md-6 col-lg-4", showFeaturedOnly = false }) => {
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -26,17 +26,19 @@ const Services = ({ col = "col-md-6 col-lg-4" }) => {
     <section>
       <div className="container">
         <div className="row g-4">
-          {servicesData.map((service, index) => {
-            const Icon = iconMap[service.icon];
-            return (
-              <div className={col} key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <Link to={`/services/${service.id}`} className="text-decoration-none">
-                  <div className="card rounded border-0 shadow-sm h-100">
-                    <div className="card-body">
-                      <div
-                        className="d-flex justify-content-center align-items-center mb-3"
-                        style={{
-                          height: '64px',
+          {servicesData
+            .filter(service => (showFeaturedOnly ? service.isHomeFeatured : true))
+            .map((service, index) => {
+              const Icon = iconMap[service.icon];
+              return (
+                <div className={col} key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                  <Link to={`/services/${service.id}`} className="text-decoration-none">
+                    <div className="card rounded border-0 shadow-sm h-100">
+                      <div className="card-body">
+                        <div
+                          className="d-flex justify-content-center align-items-center mb-3"
+                          style={{
+                            height: '64px',
                           width: '64px',
                           backgroundColor: '#f8f9fa',
                           borderRadius: '8px',

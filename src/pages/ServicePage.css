@@ -1,11 +1,24 @@
 .gallery-con {
 column-count: 3;
+padding: 0;
 }
 
 .gallery-col {
     list-style-type: none; 
-    break-inside: avoid;}
+    break-inside: avoid;
+}
 
 .gallery-col img {
     height: 100%;
+}
+
+@media (max-width: 768px) {
+    .gallery-con {
+        column-count: 1;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-con {
+        column-count: 2;
+    }
 }

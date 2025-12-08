@@ -50,9 +50,12 @@ const Footer = () => {
       <footer id="footer-space" className="py-5">
         <div className="container">
           <div className="row mb-4">
+            <div className='col-12'>
+              <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4 float-start" style={{ height: '100px' }} />
+
+            </div>
             {/* Company Info */}
             <div className="col-lg-4 mb-3">
-              <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4" style={{ height: '100px' }} />
               <p>
                 Integrated engineering solutions for modern living and business operations.
               </p>

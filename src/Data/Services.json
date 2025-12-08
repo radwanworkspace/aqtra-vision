@@ -1,6 +1,7 @@
 [
   {
     "id": "solar-energy",
+    "isHomeFeatured": true,
     "title": "Solar Energy",
     "description": "Sustainable power solutions for your future",
     "videoUrl": "/videos/solar_energy.mp4",
@@ -15,6 +16,7 @@
   },
   {
     "id": "smart-home-systems",
+    "isHomeFeatured": true,
     "title": "Smart Home Systems",
     "description": "Advanced home automation for modern living",
     "videoUrl": "/videos/smart_home_systems.mp4",
@@ -30,6 +32,7 @@
   },
   {
     "id": "hvac-chiller",
+    "isHomeFeatured": true,
     "title": "HVAC & Chiller",
     "description": "Climate control and air quality solutions",
     "videoUrl": "/videos/hvac_chiller.mp4",
@@ -44,6 +47,7 @@
   },
   {
     "id": "plumbing",
+    "isHomeFeatured": false,
     "title": "Plumbing",
     "description": "Complete water and drainage systems",
     "videoUrl": "/videos/plumbing.mp4",
@@ -58,6 +62,7 @@
   },
   {
     "id": "fire-fighting",
+    "isHomeFeatured": true,
     "title": "Fire Fighting",
     "description": "Comprehensive fire safety solutions",
     "videoUrl": "/videos/fire_fighting.mp4",
@@ -72,6 +77,7 @@
   },
   {
     "id": "electrical",
+    "isHomeFeatured": true,
     "title": "Electrical",
     "description": "Professional electrical installations",
     "videoUrl": "/videos/electrical.mp4",
@@ -87,6 +93,7 @@
   },
   {
     "id": "network-security",
+    "isHomeFeatured": true,
     "title": "Network & Security",
     "description": "Modern IT infrastructure solutions",
     "videoUrl": "/videos/network_security.mp4",

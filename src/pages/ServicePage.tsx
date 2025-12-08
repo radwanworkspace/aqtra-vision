@@ -34,25 +34,20 @@ const ServicePage: React.FC = () => {
             <HeaderBanner
                 title={service.title}
                 subtitle="Explore our comprehensive solutions."
-                backgroundImage="/src/assets/hvac/8.jpg"
+                backgroundImage={service.headerImage}
             />
             <div className="container py-5">
                 <h3>{service.title}</h3>
                 <div dangerouslySetInnerHTML={{ __html: service.description }}></div>
                 {service.videoUrl && (
                     <div className="mt-4">
-                        <ServiceVideoSection
-                            title={service.title}
-                            description={[service.description]}
-                            videoUrl={service.videoUrl}
-                        />
+              
                     </div>
                 )}
 
-      <ParallaxImageSection imageUrl={'/src/assets/hvac/7.jpg'} heading="Your Text Here" summary={'Your summary here'} />
-
+      {/* <ParallaxImageSection imageUrl={'/src/assets/hvac/7.jpg'} heading="Your Text Here" summary={'Your summary here'} />
       <ParallaxImageSection imageUrl={'/src/assets/hvac/5.jpg'} heading="Your Text Here" summary={'Your summary here'} />
-      <ParallaxImageSection imageUrl={'/src/assets/hvac/4.jpg'} heading="Your Text Here" summary={'Your summary here'} />
+      <ParallaxImageSection imageUrl={'/src/assets/hvac/4.jpg'} heading="Your Text Here" summary={'Your summary here'} /> */}
 
                 <div className="mt-4">
                     <div className="row">
