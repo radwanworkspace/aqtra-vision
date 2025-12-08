@@ -55,7 +55,7 @@ const ServicePage: React.FC = () => {
                             <ul className="gallery-con">
                                 {service.images.map((image, index) => (
                                     <li key={index} className="gallery-col mb-3">
-                                        <img src={image} alt={service.title} className="img-fluid rounded shadow-sm" />
+                                        <img src={image} alt={service.title} className="img-fluid shadow-sm" />
                                     </li>
                                 ))}
                             </ul>

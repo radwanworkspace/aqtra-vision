@@ -26,11 +26,11 @@ const HeaderBanner: React.FC<HeaderBannerProps> = ({ title, subtitle, background
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(10, 58, 26, 0.5)',
         zIndex: 1,
       }}></div>
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <h1 className="display-4 fw-bold">{title}</h1>
+        <h1 className="display-4">{title}</h1>
         {subtitle && <p className="lead mt-3">{subtitle}</p>}
       </div>
     </div>

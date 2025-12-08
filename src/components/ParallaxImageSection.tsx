@@ -14,8 +14,8 @@ const ParallaxImageSection: React.FC<ParallaxImageSectionProps> = ({ imageUrl, h
       <div className="image-wrapper" style={{ backgroundImage: `url(${imageUrl})` }}></div>
       {overlay && <div className="overlay"></div>}
       
-      <div className="text-overlay">
-        <h2>{heading}</h2>
+      <div className={overlay ? "parallax-text" : "parallax-text text-overlay"}>
+        <h2 className='display-4'>{heading}</h2>
         <p>{summary}</p>
       </div>
     </section>

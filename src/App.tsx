@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import "smoothscroll-for-websites"; // No variable is needed
 import ServicesPage from "./pages/ServicesPage";
 import ServicePage from "./pages/ServicePage";
+import ContactPage from "./pages/ContactPage";
+import HVACSolutions from "./pages/services/HVACSolutions";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:id" element={<ServicePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/hvac-solutions" element={<HVACSolutions />} />
             {/* Ignore /assets route to allow static files */}
             <Route path="/src/assets/*" element={null} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

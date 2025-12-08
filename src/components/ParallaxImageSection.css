@@ -1,7 +1,7 @@
 /* ParallaxImageSection.css */
 .parallax-image-section {
   position: relative;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
 }
 
@@ -18,26 +18,31 @@
   z-index: 1;
 }
 
-.text-overlay {
+.parallax-text {
   position: absolute;
   top: 50%;
   right: 10%;
   transform: translateY(-50%);
   z-index: 2;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: #14363f81; */
   padding: 1rem;
   border-radius: 8px;
   font-size: 1.25rem;
-  
+  max-width: 500px;
 }
 
-.text-overlay h2 {
+.text-overlay {
+  background-color: #14363f81;
+}
+
+
+.text h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
-.text-overlay p {
+.text p {
   font-size: 1rem;
 }
 
