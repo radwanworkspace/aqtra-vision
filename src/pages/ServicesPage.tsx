@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import ServiceVideoSection from '@/components/ServiceVideoSection';
-import Layout from '@/components/Layout';
 import HeaderBanner from '@/components/HeaderBanner';
-import HeaderImage from '@/assets/hero-bg-2.jpg';
+
 import SolorBannels from '@/assets/intro-bg.mp4';
 import SolorInstall from '@/assets/solor-install.mp4';
 import KhobarLocation from '@/assets/khober-location.mp4';
@@ -47,30 +45,86 @@ const ServicesPage: React.FC = () => {
       <HeaderBanner
         title="Our Services"
         subtitle="Explore the wide range of services we offer to meet your needs."
-        backgroundImage={HeaderImage}
+        backgroundImage={'/src/assets/hero-bg-2.jpg#position=0px,-450px'}
       />
       <div>
         <div className='container-fluid'>
           <div className='my-5 row'>
             <div className="col-12">
               <div className="container">
-                <div className="row">
-                  <div className={"col-md-6"} data-aos="fade-up" data-aos-delay={100}>
-                    <Link to={`/services/`} className="text-decoration-none">
-                      <div className="card rounded border-0 shadow-sm h-100">
+                <div className="row justify-content-center">
+                  <div className={"col-md-7 mb-4"} data-aos="fade-up" data-aos-delay={100}>
+                    <Link to={`/services/`} className="text-decoration-none hover-effect">
+                      <div className="card rounded-pill border-0 shadow-sm h-100">
                         <div className="card-body">
-                          <div
-                            className="d-flex justify-content-center align-items-center mb-3"
-                            style={{
-                              height: '64px',
-                              width: '64px',
-                              backgroundColor: '#f8f9fa',
-                              borderRadius: '8px',
-                            }}
-                          >
+                          <div className="d-flex justify-content-between align-items-center">
+                            <img src='/src/assets/solar/solar-logo-icon.png' width={80} alt="Solution Page" />
+                            <h3 className='display-5 text-truncate m-0'>Solar Solutions</h3>
+                            <img src='/src/assets/solar/solar-logo-txt.png' width={80} alt="Solution Page" />
                           </div>
-                          <h5 className="card-title text-center"></h5>
-                          <p className="card-text text-center text-muted">asasasa</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="col-12"></div>
+
+                  <div className={"col-md-9 mb-4"} data-aos="fade-up" data-aos-delay={200}>
+                    <Link to={`/services/`} className="text-decoration-none">
+                      <div className="card rounded-pill border-0 shadow-sm h-100">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <img src='/src/assets/fire/fire-logo-icon.png' width={80} alt="Solution Page" />
+                            <h3 className='display-5 text-truncate m-0'>Fire Fighting Solutions</h3>
+                            <img src='/src/assets/fire/fire-logo-txt.png' width={80} alt="Solution Page" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  <div className="col-12"></div>
+
+                  <div className={"col-md-8 mb-4"} data-aos="fade-up" data-aos-delay={200}>
+                    <Link to={`/services/`} className="text-decoration-none">
+                      <div className="card rounded-pill border-0 shadow-sm h-100">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <img src='/src/assets/plumbing/plumbing-logo-icon.png' width={80} alt="Solution Page" />
+                            <h3 className='display-5 text-truncate m-0'>Plumbing Solutions</h3>
+                            <img src='/src/assets/plumbing/plumbing-logo-txt.png' width={80} alt="Solution Page" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  <div className="col-12"></div>
+
+                  <div className={"col-md-7 mb-4"} data-aos="fade-up" data-aos-delay={200}>
+                    <Link to={`/services/`} className="text-decoration-none">
+                      <div className="card rounded-pill border-0 shadow-sm h-100">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <img src='/src/assets/network/network-logo-icon.png' width={80} alt="Solution Page" />
+                            <h3 className='display-5 text-truncate m-0'>Network Solutions</h3>
+                            <img src='/src/assets/network/network-logo-txt.png' width={80} alt="Solution Page" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  <div className="col-12"></div>
+
+                  <div className={"col-md-9 mb-4"} data-aos="fade-up" data-aos-delay={200}>
+                    <Link to={`/services/`} className="text-decoration-none">
+                      <div className="card rounded-pill border-0 shadow-sm h-100">
+                        <div className="card-body">
+                          <div className="d-flex justify-content-between align-items-center">
+                            <img src='/src/assets/electrical/electrical-logo-icon.png' width={80} alt="Solution Page" />
+                            <h3 className='display-5 text-truncate m-0'>Electric Power Solutions</h3>
+                            <img src='/src/assets/electrical/electrical-logo-txt.png' width={80} alt="Solution Page" />
+                          </div>
                         </div>
                       </div>
                     </Link>

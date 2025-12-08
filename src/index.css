@@ -188,3 +188,11 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
   box-shadow: 0 0 0 0.2rem var(--ring);
 }
 
+.hover-effect {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hover-effect:hover {
+  transform: translateY(-1rem);
+  box-shadow: 0 0 15px rgba(17, 157, 96, 0.4);
+}

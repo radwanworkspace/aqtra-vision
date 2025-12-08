@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { ChevronLeft } from 'lucide-react';
 import servicesMedia from '@/Data/ServicesMedia.json';
 import HeaderBanner from '@/components/HeaderBanner';
-import ServiceVideoSection from '@/components/ServiceVideoSection';
 import  './ServicePage.css';
-import ParallaxImageSection from '@/components/ParallaxImageSection';
 
 const ServicePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -12,7 +11,7 @@ const ServicePage: React.FC = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    }, [id]);
 
     if (!service) {
         return (
@@ -37,6 +36,8 @@ const ServicePage: React.FC = () => {
                 backgroundImage={service.headerImage}
             />
             <div className="container py-5">
+                <Link to="/services" className="btn btn-outline-primary mb-4"><ChevronLeft  /> Services</Link>
+                {service.solutionPage && <Link to={`${service.solutionPage}`} className="btn btn-outline-primary float-end mb-4"><img src='/src/assets/solar/solar-logo-txt.png' alt="Solution Page" /></Link> }
                 <h3>{service.title}</h3>
                 <div dangerouslySetInnerHTML={{ __html: service.description }}></div>
                 {service.videoUrl && (

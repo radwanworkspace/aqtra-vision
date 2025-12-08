@@ -22,12 +22,12 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Smart Home Systems' },
-      { name: 'Solar Energy' },
-      { name: 'HVAC & Chiller' },
-      { name: 'Plumbing' },
-      { name: 'Electrical' },
-      { name: 'Network & IT' },
+      { name: 'Smart Home Systems', href: '/services/smart-home-systems' },
+      { name: 'Solar Energy', href: '/services/solar-energy' },
+      { name: 'HVAC & Chiller', href: '/services/hvac-chiller' },
+      { name: 'Plumbing', href: '/services/plumbing' },
+      { name: 'Electrical', href: '/services/electrical' },
+      { name: 'Network & IT', href: '/services/network-security' },
     ],
     company: [
       { name: 'About Us', href: '/about-us' },
@@ -73,7 +73,7 @@ const Footer = () => {
               <ul className="list-unstyled">
                 {footerLinks.services.map((service, index) => (
                   <li key={index} className="d-flex align-items-center">
-                    <Link to="#">{service.name}</Link>
+                    <Link to={service.href}>{service.name}</Link>
                   </li>
                 ))}
               </ul>

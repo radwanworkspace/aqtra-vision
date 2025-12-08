@@ -10,7 +10,7 @@ const HeaderBanner: React.FC<HeaderBannerProps> = ({ title, subtitle, background
   const bannerStyle: React.CSSProperties = {
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundPosition: backgroundImage && backgroundImage.includes('#position=') ? backgroundImage.split('#position=')[1].split(',')[0] + ' ' + backgroundImage.split('#position=')[1].split(',')[1]    : 'center',
     backgroundRepeat: 'no-repeat',
     position: 'relative' as 'relative',
     padding: '4rem 1rem',

@@ -29,6 +29,7 @@
     {
         "id": "hvac-chiller",
         "title": "HVAC & Chiller",
+        "solutionPage": "/hvac-solutions",
         "description": "<p>HVAC and chiller systems ensure optimal climate control and air quality. They are vital for maintaining comfortable and healthy indoor environments in residential and commercial spaces.</p>",
         "videoUrl": "/src/assets/hvac/1.mp4",
         "headerImage": "/src/assets/hvac/8.jpg",
@@ -49,7 +50,7 @@
         "title": "Plumbing",
         "description": "<p>Plumbing systems are essential for water supply and drainage. They include installations for heaters, leak detection, and solar hot water systems, ensuring efficient water management.</p>",
         "videoUrl": "/src/assets/plumbing/1.mp4",
-        "headerImage": "/src/assets/plumbing/3.jpg",
+        "headerImage": "/src/assets/plumbing/6.jpg#position=0px,-934px",
         "images": [
             "/src/assets/plumbing/1.jpg",
             "/src/assets/plumbing/2.jpg",
@@ -67,10 +68,10 @@
     },
     {
         "id": "fire-fighting",
-        "title": "Fire Fighting",
+        "title": "Fire Alarm and Fighting",
         "description": "<p>Fire fighting systems provide comprehensive safety solutions, including fire alarms, suppression systems, and emergency lighting to protect lives and property.</p>",
         "videoUrl": "/src/assets/fire/1.mp4",
-        "headerImage": "/src/assets/fire/4.jpg",
+        "headerImage": "/src/assets/fire/4.jpg#position=0px,-650px",
         "images": [
             "/src/assets/fire/1.jpg",
             "/src/assets/fire/2.jpg",
