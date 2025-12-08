@@ -54,7 +54,7 @@ const ServicesPage: React.FC = () => {
 							<div className="container">
 								<div className="row justify-content-center">
 									<div
-										className={'col-md-9 mb-4'}
+										className={'col-md-8 mb-4'}
 										data-aos="fade-up"
 										data-aos-delay={100}
 									>
@@ -84,10 +84,13 @@ const ServicesPage: React.FC = () => {
 											</div>
 										</Link>
 									</div>
+								
+
 									<div className="col-12"></div>
 
-									<div
-										className={'col-md-8 mb-4'}
+
+                  							<div
+										className={'col-md-10 mb-4'}
 										data-aos="fade-up"
 										data-aos-delay={200}
 									>
@@ -96,16 +99,16 @@ const ServicesPage: React.FC = () => {
 												<div className="card-body">
 													<div className="d-flex justify-content-between align-items-center">
 														<img
-															src="/src/assets/fire/fire-logo-icon.png"
+															src="/src/assets/smart_home/smart_home-logo-icon.png"
 															width={80}
 															alt="Solution Page"
 															style={{ marginBottom: '12px' }}
 														/>
 														<h3 className="display-5 text-truncate m-0">
-															Fire Fighting Solutions
+															Smart Home & Security Solutions
 														</h3>
 														<img
-															src="/src/assets/fire/fire-logo-txt.png"
+															src="/src/assets/smart_home/smart_home-logo-txt.png"
 															width={80}
 															alt="Solution Page"
 														/>
@@ -147,7 +150,7 @@ const ServicesPage: React.FC = () => {
 
 									<div className="col-12"></div>
 									<div
-										className={'col-md-8 mb-4'}
+										className={'col-md-7 mb-4'}
 										data-aos="fade-up"
 										data-aos-delay={200}
 									>
@@ -174,7 +177,36 @@ const ServicesPage: React.FC = () => {
 											</div>
 										</Link>
 									</div>
+	<div className="col-12"></div>
 
+									<div
+										className={'col-md-8 mb-4'}
+										data-aos="fade-up"
+										data-aos-delay={200}
+									>
+										<Link to={`/services/`} className="text-decoration-none">
+											<div className="card rounded-pill border-0 shadow-sm h-100">
+												<div className="card-body">
+													<div className="d-flex justify-content-between align-items-center">
+														<img
+															src="/src/assets/fire/fire-logo-icon.png"
+															width={80}
+															alt="Solution Page"
+															style={{ marginBottom: '12px' }}
+														/>
+														<h3 className="display-5 text-truncate m-0">
+															Fire Fighting Solutions
+														</h3>
+														<img
+															src="/src/assets/fire/fire-logo-txt.png"
+															width={80}
+															alt="Solution Page"
+														/>
+													</div>
+												</div>
+											</div>
+										</Link>
+									</div>
 									<div className="col-12"></div>
 
 									<div
@@ -209,7 +241,7 @@ const ServicesPage: React.FC = () => {
 									<div className="col-12"></div>
 
 									<div
-										className={'col-md-9 mb-4'}
+										className={'col-md-8 mb-4'}
 										data-aos="fade-up"
 										data-aos-delay={200}
 									>

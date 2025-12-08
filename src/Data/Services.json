@@ -20,9 +20,9 @@
   {
     "id": "smart-home-systems",
     "isHomeFeatured": true,
-    "logo": "/src/assets/smart-home/smart-home-logo.png",
-    "logoText": "/src/assets/smart-home/smart-home-logo-txt.png",
-    "logoIcon": "/src/assets/smart-home/smart-home-logo-icon.png",
+    "logo": "/src/assets/smart_home/smart_home-logo.png",
+    "logoText": "/src/assets/smart_home/smart_home-logo-txt.png",
+    "logoIcon": "/src/assets/smart_home/smart_home-logo-icon.png",
     "title": "Smart Home Systems",
     "description": "Advanced home automation for modern living",
     "videoUrl": "/videos/smart_home_systems.mp4",
