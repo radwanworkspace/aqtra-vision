@@ -50,8 +50,9 @@ const HeroIntro: React.FC = () => {
             <img src={LogoIcon} alt="AQTRA Logo" className="intro-card-icon mb-3" />
             <h3 className="fw-bold">AQTRA</h3>
             <p className="mb-3">
-              Reach out to us for innovative engineering solutions tailored to your needs. Let’s build the future together.
+              Reach out to us for innovative engineering solutions tailored to your needs.
             </p>
+            <p>Let’s build the future together.</p>
             <a href="#contact" className="btn btn-primary rounded-pill w-100">Get in Touch</a>
           </div>
         </section>

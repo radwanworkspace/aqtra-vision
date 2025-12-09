@@ -36,9 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </main>
 
         {/* Footer */}
-        <div style={{ position: 'relative' }}>
           <Footer />
-        </div>
       </div>
     </>
   );

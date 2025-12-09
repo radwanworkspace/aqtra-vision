@@ -47,8 +47,8 @@ const Footer = () => {
 
   return (
     <>
-      {/* <div style={{ marginBottom: FooterSpaceHeight }}></div> */}
-      <footer id="footer-space" className="py-5">
+      {/* <div id="footer-space" style={{ marginBottom: FooterSpaceHeight }}></div> */}
+      <footer  className="py-5">
         <div className="container">
           <div className="row mb-4">
             <div className='col-12'>
@@ -59,12 +59,7 @@ const Footer = () => {
               <p>
                 Integrated engineering solutions for modern living and business operations.
               </p>
-              <p>
-                It's in the meeting of people that ideas begin to spark. If you have a question, a suggestion, or simply wish to get in touch. Feel free to send us an email. We’ll respond as soon as possible and look forward to hearing from you.
-              </p>
-              <Link to="#contact" className="btn btn-primary rounded-pill btn-lg fs-4 px-4 py-3">
-                Get in Touch
-              </Link>
+     
             </div>
 
             {/* Services Links */}
@@ -90,14 +85,23 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
+            <div className='col-12'>
+         <p>
+                It's in the meeting of people that ideas begin to spark. If you have a question, a suggestion, or simply wish to get in touch. Feel free to send us an email. We’ll respond as soon as possible and look forward to hearing from you.
+              </p>
+              <Link to="#contact" className="btn btn-primary rounded-pill btn-lg fs-4 px-4 py-3">
+                Get in Touch
+              </Link>
+                <img src="/src/assets/saudi_vision_2030_logo.svg" style={{ height: '100px' }} alt="Saudi Vision 2030 Logo" className="mb-4 float-end" />
+            </div>
           </div>
 
           {/* Social Links */}
           <div className="row mt-4 pt-3 border-top border-secondary">
-            <div className="col-md-6 text-start">
+            <div className="col-md-6 d-flex flex-row justify-content-center justify-content-md-start my-2 text-start">
               <p className="mb-0">&copy; {currentYear} AQTRA. All rights reserved.</p>
             </div>
-            <div className="col-md-6 d-flex justify-content-end flex-row text-end">
+            <div className="col-md-6 d-flex flex-row justify-content-center justify-content-md-end my-2 text-end">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
