@@ -47,8 +47,8 @@ const HeroIntro: React.FC = () => {
             {/* <img src={LogoIcon} alt="AQTRA Logo" className="intro-card-icon d-md-none" /> */}
           </div>
           <div className="intro-card p-4 rounded d-none d-md-block" data-aos="fade-up">
-            <img src={LogoIcon} alt="AQTRA Logo" className="intro-card-icon mb-3" />
-            <h3 className="fw-bold">AQTRA</h3>
+            {/* <img src={LogoIcon} alt="AQTRA Logo" className="intro-card-icon mb-3" /> */}
+            <h5 className="display-6">AQTRA</h5>
             <p className="mb-3">
               Reach out to us for innovative engineering solutions tailored to your needs.
             </p>
