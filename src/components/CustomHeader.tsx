@@ -34,9 +34,8 @@ const CustomHeader: React.FC = () => {
 
   return (
     <nav
-      className={`navbar navbar-expand-lg fixed-top ${
-        isScrolled ? 'navbar-scrolled' : 'navbar-transparent'
-      } ${isNavbarVisible ? 'visible' : 'invisible'}`}
+      className={`navbar navbar-expand-lg fixed-top ${isScrolled ? 'navbar-scrolled' : 'navbar-transparent'
+        } ${isNavbarVisible ? 'visible' : 'invisible'}`}
       style={{ transition: 'visibility 0.3s, opacity 0.3s', opacity: isNavbarVisible ? 1 : 0 }}
     >
       <div className="container">
@@ -49,10 +48,10 @@ const CustomHeader: React.FC = () => {
             className="w-auto logo-icon"
           />
           <span className="vr" ></span>
-              <img
+          <img
             src={LogoText}
             alt="AQTRA Logo"
-            style={{ height: '30px' }}
+            style={{ height: '39px' }}
             className="w-auto logo-txt"
           />
         </a>
@@ -125,19 +124,13 @@ const CustomHeader: React.FC = () => {
             <FontAwesomeIcon icon={faPhone} size="lg" /> +966 (056) 240 5666
           </a>
           <span className="vr"></span>
-          <a
-            href="https://wa.me/966562405666"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-success rounded-circle d-flex align-items-center justify-content-center"
+          <a href="https://wa.me/966562405666" target="_blank" rel="noopener noreferrer" className="btn btn-success rounded-circle d-flex align-items-center justify-content-center"
             style={{ width: '40px', height: '40px' }}
           >
             <FontAwesomeIcon icon={faWhatsapp} size="lg" />
           </a>
           <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="https://instagram.com" target="_blank" rel="noopener noreferrer"
             className="btn btn-outline-success rounded-circle d-flex align-items-center justify-content-center"
             style={{ width: '40px', height: '40px' }}
           >
