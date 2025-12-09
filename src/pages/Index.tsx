@@ -3,15 +3,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Services from '@/components/Services';
 import About from '@/components/About';
-import Contact from '@/components/Contact';
 import HeroIntro from '@/components/HeroIntro';
 import NewsletterSection from '@/components/NewsletterSection';
-import ParallaxVideoSection from '@/components/ParallaxVideoSection';
-import ParallaxImageSection from '@/components/ParallaxImageSection';
-
-import ParallaxVideo from '@/assets/intro-bg.mp4';
-import ParallaxImage from '@/assets/network-ftth-cables.jpg';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faConciergeBell } from '@fortawesome/free-solid-svg-icons';
 
 const Index = () => {
   useEffect(() => {
@@ -31,17 +27,24 @@ const Index = () => {
 
       {/* About Section */}
       <section>
+
         <About />
       </section>
 
       {/* Services Section */}
       <section id="services" className="py-5 bg-light">
-        <div className="text-center mb-4" data-aos="fade-up">
-          <h2 className="mb-3 text-dark">Our Services</h2>
-          <p className="text-muted fs-5">
+        <div className="section-header text-center mb-5" data-aos="fade-up">
+          <div className="section-title">
+            <h2>
+              <FontAwesomeIcon icon={faConciergeBell} className="me-2 text-primary" />
+              Our Services
+            </h2>
+          </div>
+          <p className="text-muted my-2 fs-5">
             Comprehensive engineering solutions tailored to your needs
           </p>
         </div>
+
         <Services showFeaturedOnly={true} />
 
         <div className="text-center mt-4" data-aos="fade-up">

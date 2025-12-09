@@ -1,8 +1,11 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
 :root {
   --background: #eff5f3;
-  --background-secondary: #f8f9fa; /* Lighter version for secondary backgrounds */
-  --background-secondary-alt: #F4F6F0; /* Lighter version for secondary backgrounds */
+  --background-secondary: #f8f9fa;
+  /* Lighter version for secondary backgrounds */
+  --background-secondary-alt: #F4F6F0;
+  /* Lighter version for secondary backgrounds */
 
   --foreground: #3d3d3d;
 
@@ -16,6 +19,8 @@
   --primary: #119d60;
   --primary-foreground: #ffffff;
   --primary-hover: #0e8652;
+
+  --primary-lightest: #e6f7f0;
 
   --secondary: #f8f9fa;
   --secondary-foreground: #3d3d3d;
@@ -94,12 +99,18 @@ body {
   background-color: var(--bs-dark) !important;
   color: var(--bs-light) !important;
 }
+
 .body-bg-light {
   background-color: var(--bs-light) !important;
   color: var(--bs-dark) !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
@@ -115,17 +126,23 @@ h3 {
   font-size: 1.75rem;
 }
 
-body, p, span, a, li {
+body,
+p,
+span,
+a,
+li {
   font-size: 1rem;
   line-height: 1.6;
 
 }
 
 
-input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.25rem #119d6033;
+input.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem #119d6033;
 }
 
 .text-gradient {
@@ -165,11 +182,14 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
 }
 
 
-.btn-primary:focus-visible, .btn-primary:active, .btn-primary.active {
-     color: var(--bs-btn-hover-color);
-    background-color: #14363f !important;
-    border-color: #14363f !important;
+.btn-primary:focus-visible,
+.btn-primary:active,
+.btn-primary.active {
+  color: var(--bs-btn-hover-color);
+  background-color: #14363f !important;
+  border-color: #14363f !important;
 }
+
 /* Updated outline button styles to use theme colors */
 .btn-outline-primary {
   background-color: transparent;
@@ -195,4 +215,30 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
 .hover-effect:hover {
   transform: translateY(-1rem);
   box-shadow: 0 0 15px rgba(17, 157, 96, 0.4);
+}
+
+
+.section-header {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-title {
+  background-color: var(--primary-lightest);
+  padding: 0.6rem 1rem;
+  color: var(--bs-primary);
+  display: inline-block;
+  border-radius: 2rem;
+
+}
+
+.section-title h2 {
+  font-size: 2.1rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.section-title h2 i {
+  color: var(--primary-dark);
 }
