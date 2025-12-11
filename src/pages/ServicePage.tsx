@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 import servicesMedia from '@/Data/ServicesMedia.json';
 import servicesInfo from '@/Data/Services.json';
 import HeaderBanner from '@/components/HeaderBanner';
-import  './ServicePage.css';
+import './ServicePage.css';
 
 const ServicePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -30,21 +30,21 @@ const ServicePage: React.FC = () => {
         );
     }
 
-    
-	// function updateNavbarBrandImages() {
-	// 	const navbarBrandImages = document.querySelectorAll<HTMLImageElement>('.navbar-brand img.logo-icon, .navbar-brand img.logo-txt');
-	// 	navbarBrandImages.forEach((img) => {
+
+    // function updateNavbarBrandImages() {
+    // 	const navbarBrandImages = document.querySelectorAll<HTMLImageElement>('.navbar-brand img.logo-icon, .navbar-brand img.logo-txt');
+    // 	navbarBrandImages.forEach((img) => {
     //   if (img.classList.contains('logo-txt')) {
     //     img.src = service.logoText; 
     //     return;
     //   }
-	// 		img.src = service.logoIcon; 
-	// 	});
-	// }
+    // 		img.src = service.logoIcon; 
+    // 	});
+    // }
 
-	// useEffect(() => {
-	// 	updateNavbarBrandImages();
-	// }, [id]);
+    // useEffect(() => {
+    // 	updateNavbarBrandImages();
+    // }, [id]);
 
     return (
         <>
@@ -54,17 +54,24 @@ const ServicePage: React.FC = () => {
                 backgroundImage={service.headerImage}
             />
             <div className="container py-5">
-                <Link to="/services" className="btn btn-outline-primary mb-4"><ChevronLeft  /> Services</Link>
-                {service.solutionPage && <Link to={`${service.solutionPage}`} className="btn btn-outline-primary float-end mb-4"><img src='/src/assets/solar/solar-logo-txt.png' alt="Solution Page" /></Link> }
-                <h3>{service.title}</h3>
+                <Link to="/services" className="btn btn-outline-primary mb-4"><ChevronLeft /> Services</Link>
+                {service.solutionPage
+                    && <Link to={`${service.solutionPage}`}
+                        className="btn btn-outline-light float-end mb-4">
+                        <img src={serviceInfo.logoText} alt="Solution Page" />
+                    </Link>}
+                <h3 className='align-baseline align-items-baseline d-flex'>
+                    <img src={serviceInfo.logoIcon} width='50px' alt="Solution Page" />
+                    {service.title}
+                </h3>
                 <div dangerouslySetInnerHTML={{ __html: service.description }}></div>
                 {service.videoUrl && (
                     <div className="mt-4">
-              
+
                     </div>
                 )}
 
-      {/* <ParallaxImageSection imageUrl={'/src/assets/hvac/7.jpg'} heading="Your Text Here" summary={'Your summary here'} />
+                {/* <ParallaxImageSection imageUrl={'/src/assets/hvac/7.jpg'} heading="Your Text Here" summary={'Your summary here'} />
       <ParallaxImageSection imageUrl={'/src/assets/hvac/5.jpg'} heading="Your Text Here" summary={'Your summary here'} />
       <ParallaxImageSection imageUrl={'/src/assets/hvac/4.jpg'} heading="Your Text Here" summary={'Your summary here'} /> */}
 

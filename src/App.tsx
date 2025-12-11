@@ -10,7 +10,7 @@ import "smoothscroll-for-websites"; // No variable is needed
 import ServicesPage from "./pages/ServicesPage";
 import ServicePage from "./pages/ServicePage";
 import ContactPage from "./pages/ContactPage";
-import HVACSolutions from "./pages/services/HVACSolutions";
+import HVACSolutions from "./pages/solutions/HVACSolutions";
 import AboutUs from "./pages/AboutUs";
 import SaudiVision2030 from "./pages/SaudiVision2030";
 import PageLoader from "./pages/PageLoader";
