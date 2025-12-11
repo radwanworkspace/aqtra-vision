@@ -1,10 +1,10 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logoVerticalLight from '@/assets/AQTRA-LOGO-TEXT-COLORD.png';
 import * as Brands from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
 import { SocialLinks } from '@/Data/CompanyInfo.json';
 import './Footer.css';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -36,6 +36,10 @@ const Footer = () => {
     ],
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       {/* <div id="footer-space" style={{ marginBottom: FooterSpaceHeight }}></div> */}
@@ -43,6 +47,14 @@ const Footer = () => {
         <div className="container">
           <div className="row mb-4">
             <div className='col-12'>
+              <button
+              title="Back to top"
+                onClick={scrollToTop}
+                className="btn border-0 float-end mb-4"
+                aria-label="Scroll to top"
+              >
+                <FontAwesomeIcon icon={faArrowUp} size='2x' className='text-primary' />
+              </button>
               <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4 float-start" style={{ height: '100px' }} />
             </div>
             {/* Company Info */}

@@ -63,7 +63,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-5 position-relative">
+    <section id="contact" className="py-5 position-relative overflow-hidden">
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
 

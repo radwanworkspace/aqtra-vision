@@ -11,10 +11,23 @@
 }
 
 .newsletter-section h2 {
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: 100;
     text-align: start;
     color: #003D3D;
+}
+
+
+@media (min-width: 768px) {
+    .newsletter-section h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .newsletter-section h2 {
+        font-size: 5rem;
+    }
 }
 
 .newsletter-section p {

@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import { useEffect } from 'react';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 import Services from '@/components/Services';
 import About from '@/components/About';
 import HeroIntro from '@/components/HeroIntro';
@@ -8,16 +8,15 @@ import NewsletterSection from '@/components/NewsletterSection';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faConciergeBell } from '@fortawesome/free-solid-svg-icons';
-import ParallaxImageWithTextBG from '@/components/ParallaxImageWithTextBG';
 
 const Index = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-      easing: 'ease-out',
-      offset: 100,
-    });
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 500,
+  //     easing: 'ease-out',
+  //     offset: 100,
+  //   });
+  // }, []);
 
   return (
     <div className="mt-5 overflow-x-hidden">

@@ -10,12 +10,30 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './CustomHeader.css';
 
+declare global {
+  interface Window {
+    bootstrap?: typeof import('bootstrap');
+  }
+}
+
 const CustomHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollPosition, setLastScrollPosition] = useState(0);
   const location = useLocation();
 
+  useEffect(() => {
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (navbarCollapse?.classList.contains('show')) {
+      const bsCollapse = window.bootstrap?.Collapse.getInstance(navbarCollapse);
+      if (bsCollapse) {
+      bsCollapse.hide();
+      } else {
+      navbarCollapse.classList.remove('show');
+      }
+    }
+  },[location.pathname]);
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPosition = window.scrollY;

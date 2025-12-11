@@ -46,29 +46,29 @@ const AboutUs: React.FC = () => {
                 </div>
 
                 <ol className="list-group">
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>HVAC & Electromechanical Contracting</strong> 
                     <p>Comprehensive climate control and mechanical solutions for residential, commercial, and industrial projects.</p>
-                <img src='/src/assets/info.svg' className='m-3' />
+                <img src='/src/assets/info.svg' style={{maxWidth: '350px'}} className='m-3' />
 
                   </li>
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>Smart Home & Automation Systems</strong> 
                     <p>Advanced automation solutions for modern living, enhancing convenience, security, and energy efficiency.</p>
                   </li>
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>Electrical & Low-Current Systems</strong>
                     <p>Reliable electrical installations and low-current systems for communication, security, and data networks.</p>
                   </li>
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>Solar Energy Systems</strong>
                     <p>Sustainable and renewable energy solutions to reduce carbon footprints and achieve energy independence.</p>
                   </li>
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>Embedded Systems & IoT</strong> 
                     <p>Innovative embedded systems and IoT solutions for smarter devices and connected environments.</p>
                   </li>
-                  <li className="list-group-item">
+                  <li className="list-group-item mb-3">
                     <strong>Web & Software Development</strong> 
                     <p>Custom web and software solutions to drive digital transformation and business growth.</p>
                   </li>

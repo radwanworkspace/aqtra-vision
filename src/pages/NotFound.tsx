@@ -21,7 +21,7 @@ const NotFound = () => {
         <div className="flex min-h-screen items-center justify-center bg-gray-100">
           <div className="text-center">
             <div className="flex justify-center gap-4 mb-4">
-              <img src="/src/assets/404.svg" alt="Placeholder 1" className="w-32 h-32" />
+              <img src="/src/assets/404.svg" style={{maxWidth: '80vw'}} alt="Placeholder 1" className="w-32 h-32" />
             </div>
             <h2 className="mb-4">Oops! The page you're looking for doesn't exist.</h2>
             <p className="mb-4 text-xl text-gray-600">
