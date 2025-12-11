@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
-import { X } from "lucide-react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './toast.css';
 
 import { cn } from "@/lib/utils";
 
@@ -14,22 +13,23 @@ const ToastViewport = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
+    
     className={cn(
-      "position-fixed top-0 start-50 translate-middle-x p-3 z-1050 d-flex flex-column align-items-center",
+      "toast-container list-unstyled position-fixed p-3",
       className,
     )}
     {...props}
   />
 ));
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
-
+//
 const toastVariants = cva(
-  "toast show position-relative d-flex align-items-center justify-between p-3 border rounded bg-light shadow-sm",
+  "toast show",
   {
     variants: {
       variant: {
-        default: "border-secondary text-dark",
-        destructive: "border-danger bg-danger text-white",
+        default: "toast-dark",
+        destructive: "toast-danger",
       },
     },
     defaultVariants: {
@@ -68,13 +68,12 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity group-hover:opacity-100 group-[.destructive]:text-red-300 hover:text-foreground group-[.destructive]:hover:text-red-50 focus:opacity-100 focus:outline-none focus:ring-2 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      "btn btn-sm btn-close opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
       className,
     )}
     toast-close=""
     {...props}
   >
-    <X className="h-4 w-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
