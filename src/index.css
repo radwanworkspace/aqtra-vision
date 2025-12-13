@@ -240,6 +240,13 @@ textarea.form-control:focus {
   margin: 0;
 }
 
+.section-title h3 {
+  font-size: 1.8rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
 .section-title h2 i {
   color: var(--primary-dark);
 }

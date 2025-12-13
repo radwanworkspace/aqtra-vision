@@ -18,6 +18,7 @@ import CookiesPolicy from "./components/CookiesPolicy";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Portfolio from "./pages/Portfolio";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => {
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/services/:id" element={<ServicePage />} />
+              <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/hvac-solutions" element={<HVACSolutions />} />
               <Route path="/saudi-vision-2030" element={<SaudiVision2030 />} />

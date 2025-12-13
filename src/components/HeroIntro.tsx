@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Marquee from './Marquee';
 import BgVideo from '@/assets/intro-bg.mp4';
-import LogoIcon from '@/assets/logo-icon.png';
 import './HeroIntro.css';
 
 const HeroIntro: React.FC = () => {
   const [videoDimensions, setVideoDimensions] = useState({ width: '50%', height: '50%' });
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,9 +34,16 @@ const HeroIntro: React.FC = () => {
       </div>
       <div className="d-flex justify-content-center align-items-center px-2">
 
-        <section className="hero-intro d-flex justify-content-center align-items-center" style={{ width: videoDimensions.width, height: videoDimensions.height }}>
+        <section className="hero-intro d-flex justify-content-center align-items-center" style={{ width: videoDimensions.width, height: videoDimensions.height, visibility: isVideoReady ? 'visible' : 'hidden' }}>
           <div className="hero-overlay"></div>
-          <video className="hero-video" autoPlay loop muted playsInline={true}>
+          <video
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline={true}
+            onLoadedData={() => setIsVideoReady(true)}
+          >
             <source src={BgVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -55,6 +61,7 @@ const HeroIntro: React.FC = () => {
             <a href="#contact" className="btn btn-primary rounded-pill w-100">Get in Touch</a>
           </div>
         </section>
+
       </div>
     </>
   );
