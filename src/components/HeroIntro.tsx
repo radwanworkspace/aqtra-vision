@@ -5,13 +5,13 @@ import LogoIcon from '@/assets/logo-icon.png';
 import './HeroIntro.css';
 
 const HeroIntro: React.FC = () => {
-  const [videoDimensions, setVideoDimensions] = useState({ width: '100%', height: '100%' });
+  const [videoDimensions, setVideoDimensions] = useState({ width: '50%', height: '50%' });
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newWidth = Math.max(50, 100 - scrollY / 20) + '%';
-      const newHeight = Math.max(50, 100 - scrollY / 20) + '%';
+      const newWidth = Math.min(100, 50 + scrollY / 5) + '%';
+      const newHeight = Math.min(100, 50 + scrollY / 5) + '%';
       setVideoDimensions({ width: newWidth, height: newHeight });
     };
 
@@ -43,7 +43,7 @@ const HeroIntro: React.FC = () => {
             Your browser does not support the video tag.
           </video>
           <div className="intro-card d-md-none p-1" data-aos="fade-up">
-            <h6 className="fw-bold">AQTRA</h6>
+            <h6 className="fw-bold m-0">AQTRA</h6>
             {/* <img src={LogoIcon} alt="AQTRA Logo" className="intro-card-icon d-md-none" /> */}
           </div>
           <div className="intro-card p-4 rounded d-none d-md-block" data-aos="fade-up">

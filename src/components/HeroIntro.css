@@ -3,6 +3,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 18px;
+  /* min-width: 70vw; */
 }
 
 .hero-video {

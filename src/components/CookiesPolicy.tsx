@@ -51,6 +51,7 @@ const CookiesPolicy: React.FC = () => {
     const updateCookies = () => {
         document.cookie = `cookiesAccepted='${JSON.stringify(settings)}'; path=/; max-age=31536000`; // ${60 * 60 * 24 * 365} 1 year
         setIsVisible(false);
+        setShowModal(false);
     };
 
 

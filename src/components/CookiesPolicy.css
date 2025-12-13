@@ -11,6 +11,9 @@
   z-index: 9999;
   font-family: Arial, sans-serif;
 }
+
+
+
 .cookie-icon{
     position: fixed;
     bottom: 20px;
@@ -28,6 +31,8 @@
     align-items: center;
     justify-content: center;
 }
+
+
 .cookie-icon:hover{
     box-shadow: 0px 0px 4px 0px #19875424;
 }
@@ -102,4 +107,18 @@
 
 .form-check-label{
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .cookie-popup {
+    right: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .cookie-icon {
+    right: 5px;
+    bottom: -5px;
+  }
+
 }
