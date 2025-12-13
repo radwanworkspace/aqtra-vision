@@ -21,7 +21,7 @@ const NewsletterSection: React.FC = () => {
 
     
     return (
-        <section className="newsletter-section p-5">
+        <section className="newsletter-section">
             <div className="container-fluid">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-10 card-holder p-4">
