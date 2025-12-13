@@ -12,14 +12,13 @@ const HeroIntro: React.FC = () => {
       const scrollY = window.scrollY;
       const newWidth = Math.min(100, 50 + scrollY / 5) + '%';
       const newHeight = Math.min(100, 50 + scrollY / 5) + '%';
+
       setVideoDimensions({ width: newWidth, height: newHeight });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-
 
   return (
     <>
@@ -38,7 +37,7 @@ const HeroIntro: React.FC = () => {
 
         <section className="hero-intro d-flex justify-content-center align-items-center" style={{ width: videoDimensions.width, height: videoDimensions.height }}>
           <div className="hero-overlay"></div>
-          <video className="hero-video" autoPlay loop muted>
+          <video className="hero-video" autoPlay loop muted playsInline={true}>
             <source src={BgVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

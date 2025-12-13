@@ -16,7 +16,7 @@ const iconMap = {
   FireExtinguisher,
 };
 
-const Services = ({ col = "col-md-6 col-lg-4", showFeaturedOnly = false }) => {
+const Services = ({ col = "col-10 col-md-6 col-lg-4", showFeaturedOnly = false }) => {
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -25,7 +25,7 @@ const Services = ({ col = "col-md-6 col-lg-4", showFeaturedOnly = false }) => {
   return (
     <section>
       <div className="container">
-        <div className="row g-4">
+        <div className="row justify-content-center g-4">
           {servicesData
             .filter(service => (showFeaturedOnly ? service.isHomeFeatured : true))
             .map((service, index) => {

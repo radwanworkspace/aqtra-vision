@@ -44,7 +44,7 @@
     "logoIcon": "/src/assets/hvac/hvac-logo-icon.png",
     "title": "HVAC & Chiller",
     "description": "Climate control and air quality solutions",
-    "videoUrl": "/videos/hvac_chiller.mp4",
+    "videoUrl": "src/videos/hvac_chiller.mp4",
     "icon": "AirVent",
     "items": [
       "Ducting Fabrication",

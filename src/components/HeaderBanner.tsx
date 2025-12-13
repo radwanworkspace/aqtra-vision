@@ -19,7 +19,12 @@ const HeaderBanner: React.FC<HeaderBannerProps> = ({ title, subtitle, background
       <div className="overlay"></div>
       <div style={{ position: 'relative', zIndex: 2 }}>
         <h1 className="display-4">{title}</h1>
-        {subtitle && <p className="lead mt-3">{subtitle}</p>}
+        {subtitle && <p className="lead mt-3">{subtitle.split('.').map((sentence, index) => (
+          <React.Fragment key={index}>
+            {sentence}
+            {index < subtitle.split('.').length - 1 && <br />}
+          </React.Fragment>
+        ))}</p>}
       </div>
     </div>
   );

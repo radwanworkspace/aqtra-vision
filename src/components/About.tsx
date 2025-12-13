@@ -79,13 +79,13 @@ const About = () => {
 
           {/* Right Features */}
           <div className="col-lg-6" data-aos="fade-left">
-            <div className="row g-3">
+            <div className="row justify-content-center g-3">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
                   <div
                     key={index}
-                    className="col-md-12 p-3 rounded bg-light shadow-sm"
+                    className="col-10 col-md-12 p-3 rounded bg-light shadow-sm"
                     data-aos="fade-left"
                     data-aos-delay={index * 100}
                   >

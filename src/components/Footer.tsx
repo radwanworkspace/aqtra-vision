@@ -55,7 +55,7 @@ const Footer = () => {
               >
                 <FontAwesomeIcon icon={faArrowUp} size='2x' className='text-primary' />
               </button>
-              <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4 float-start" style={{ height: '100px' }} />
+              <img src={logoVerticalLight} alt="AQTRA Logo" className="mb-4 p-2 float-start" style={{ height: '100px' }} />
             </div>
             {/* Company Info */}
             <div className="col-lg-4 mb-3">

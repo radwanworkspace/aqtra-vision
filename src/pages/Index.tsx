@@ -20,7 +20,7 @@ const Index = () => {
 
   return (
     <div className="mt-5 overflow-x-hidden">
-    
+
       {/* Hero Section */}
       <section className="mb-5 d-flex flex-column justify-content-center align-items-center">
         <HeroIntro />
@@ -34,16 +34,18 @@ const Index = () => {
 
       {/* Services Section */}
       <section id="services" className="py-5 bg-light">
-        <div className="section-header text-center mb-5" data-aos="fade-up">
-          <div className="section-title">
-            <h2>
-              <FontAwesomeIcon icon={faConciergeBell} className="me-2 text-primary" />
-              Our Services
-            </h2>
+        <div className='container'>
+          <div className="section-header text-center mb-5" data-aos="fade-up">
+            <div className="section-title">
+              <h2>
+                <FontAwesomeIcon icon={faConciergeBell} className="me-2 text-primary" />
+                Our Services
+              </h2>
+            </div>
+            <p className="text-muted my-2 fs-5">
+              Comprehensive engineering solutions tailored to your needs
+            </p>
           </div>
-          <p className="text-muted my-2 fs-5">
-            Comprehensive engineering solutions tailored to your needs
-          </p>
         </div>
 
         <Services showFeaturedOnly={true} />
