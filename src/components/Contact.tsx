@@ -57,7 +57,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      content: 'Saudi Arabia',
+      content: '8060 Prince Muhammad St., Al Khobar Al Shamalia, Al Khobar 34425, Saudi Arabia',
       link: 'https://maps.app.goo.gl/1bKxda2cTEAoHvv57',
     },
   ];
@@ -81,7 +81,7 @@ const Contact = () => {
           {/* Contact Information */}
 
           <div className="col-lg-6" data-aos="fade-right" >
-        
+
             <h3 className="h5 mb-3" onClick={
               () => {
                 toast({
@@ -98,15 +98,15 @@ const Contact = () => {
                 const Icon = info.icon;
                 return (
                   <li key={index} className="custom-list-item mb-3">
-                      <a href={info.link} target='_blank' rel="noopener noreferrer" className="d-flex align-items-start text-muted text-decoration-none">
-                    <div className="me-3">
-                      <Icon className="text-primary" size={24} />
-                    </div>
-                    <div>
+                    <a href={info.link} target='_blank' rel="noopener noreferrer" className="d-flex align-items-start text-muted text-decoration-none">
+                      <div className="me-3">
+                        <Icon className="text-primary" size={24} />
+                      </div>
+                      <div>
                         <h6 className="fw-bold mb-1">{info.title}</h6>
                         {info.content}
-                    </div>
-                      </a>
+                      </div>
+                    </a>
                   </li>
                 );
               })}
@@ -179,7 +179,7 @@ const Contact = () => {
                 <Send className="me-2" size={18} /> Send Message
               </button>
             </form>
-      
+
           </div>
         </div>
       </div>
