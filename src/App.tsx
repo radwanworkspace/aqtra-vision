@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./Layout/Layout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import "smoothscroll-for-websites";
@@ -20,6 +20,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Portfolio from "./pages/Portfolio";
 
+import Rellax from "rellax";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -35,6 +37,21 @@ const App = () => {
 
     AOS.refresh();
   }, [location]);
+
+    useEffect(() => {
+    const rellax = new Rellax(".rellax", {
+      speed: 2,
+      center: true,
+      wrapper: null,
+      round: false,
+      vertical: true,
+      horizontal: true,
+    });
+
+    return () => {
+      rellax.destroy(); // VERY IMPORTANT
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

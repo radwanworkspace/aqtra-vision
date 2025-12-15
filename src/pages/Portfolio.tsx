@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '@/components/Header';
+import Header from '@/Layout/Header';
 import HeaderBanner from '@/components/HeaderBanner';
 
 const Portfolio: React.FC = () => {
