@@ -11,6 +11,7 @@ import ServicesPage from "./pages/ServicesPage";
 import ServicePage from "./pages/ServicePage";
 import ContactPage from "./pages/ContactPage";
 import HVACSolutions from "./pages/solutions/HVACSolutions";
+import SolarSolutions from "./pages/solutions/SolarSolutions";
 import AboutUs from "./pages/AboutUs";
 import SaudiVision2030 from "./pages/SaudiVision2030";
 import PageLoader from "./pages/PageLoader";
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/hvac-solutions" element={<HVACSolutions />} />
+              <Route path="/solar-solutions" element={<SolarSolutions />} />
               <Route path="/saudi-vision-2030" element={<SaudiVision2030 />} />
               <Route path="/src/assets/*" element={null} />
               <Route path="*" element={<NotFound />} />

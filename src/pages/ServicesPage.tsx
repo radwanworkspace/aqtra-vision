@@ -76,7 +76,7 @@ const ServicesPage: React.FC = () => {
 										data-aos-delay={100}
 									>
 										<Link
-											to={`/services/`}
+											to={`/solar-solutions`}
 											className="text-decoration-none hover-effect"
 										>
 											<div className="card rounded-pill border-0 shadow-sm h-100">
