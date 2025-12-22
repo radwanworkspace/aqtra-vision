@@ -39,7 +39,7 @@ const NewsletterSection: React.FC = () => {
                 <img src="/src/assets/decoration-2.svg" className='decoration-21-img' alt="" />
             </div>
             <section className="newsletter-section">
-                <div className="container-fluid">
+                <div className="container">
                     <div className="row justify-content-center newsletter-row">
                         <div className="col-12 newsletter-col12 col-md-10 card-holder p-4">
                             <div className="row g-4 align-items-center">

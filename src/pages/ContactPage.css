@@ -27,18 +27,24 @@
 }
 
 .google-map-logo {
-  width: 73px;
+  width: 50px;
   height: auto;
   margin-right: 0.5rem;
 }
 
+.rate-us-section h2{
+  margin-bottom: 1rem;
+  font-weight: 100;
+  font-size: 2.0rem;
+}
 .rate-us-stars {
   display: flex;
+  justify-content: end;
 }
 
 .rate-us-stars .star {
   color: #ffc107;
-  font-size: 2rem;
+  font-size: 1rem;
   line-height: 1;
   margin: 0 0.1rem;
 }
