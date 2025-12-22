@@ -20,7 +20,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Portfolio from "./pages/Portfolio";
 
-import Rellax from "rellax";
 
 const queryClient = new QueryClient();
 
@@ -36,22 +35,9 @@ const App = () => {
     });
 
     AOS.refresh();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
-
-  useEffect(() => {
-    const rellax = new Rellax(".rellax", {
-      speed: 2,
-      center: true,
-      wrapper: null,
-      round: false,
-      vertical: true,
-      horizontal: true,
-    });
-
-    return () => {
-      rellax.destroy(); // VERY IMPORTANT
-    };
-  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

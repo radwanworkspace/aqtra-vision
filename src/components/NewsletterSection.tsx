@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './NewsletterSection.css';
 import { ArrowRight } from 'lucide-react';
-import { AlertDialog } from '@radix-ui/react-alert-dialog';
-import { Button } from './ui/button';
+import Rellax from "rellax";
 
 const NewsletterSection: React.FC = () => {
     let [consentGiven, setConsentGiven] = React.useState(false);
@@ -19,10 +18,24 @@ const NewsletterSection: React.FC = () => {
         alert('Thank you for subscribing to our newsletter!');
     };
 
+  useEffect(() => {
+    const rellax = new Rellax(".rellax", {
+      speed: 2,
+      center: true,
+      wrapper: null,
+      round: false,
+      vertical: true,
+      horizontal: true,
+    });
+
+    return () => {
+      rellax.destroy(); // VERY IMPORTANT
+    };
+  }, []);
 
     return (
         <>
-            <div className='decoration-21 d-none d-lg-block rellax' data-rellax-speed="5" data-rellax-percentage="0.5">
+            <div className='decoration-21 d-none d-lg-block rellax'>
                 <img src="/src/assets/decoration-2.svg" className='decoration-21-img' alt="" />
             </div>
             <section className="newsletter-section">

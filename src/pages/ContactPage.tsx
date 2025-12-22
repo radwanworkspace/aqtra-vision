@@ -5,13 +5,28 @@ import GoogleMapLogo from '@/assets/google-map-logo.png'; // Ensure this path is
 import {faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ContactPage.css';
-
+import Rellax from "rellax";
 
 const ContactPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+
+    useEffect(() => {
+      const rellax = new Rellax(".rellax", {
+        speed: -2,
+        center: true,
+        wrapper: null,
+        round: false,
+        vertical: true,
+        horizontal: true,
+      });
+  
+      return () => {
+        rellax.destroy(); // VERY IMPORTANT
+      };
+    }, []);
   return (
     <>
       <HeaderBanner
@@ -24,7 +39,7 @@ const ContactPage: React.FC = () => {
         <Contact />
 
 
-        <div className="rate-us-section">
+        <div className="rate-us-section rellax">
           <a
             href="https://g.page/r/CVE4dhOMDHoMEBM/review"
             target="_blank"
