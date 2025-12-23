@@ -3,7 +3,7 @@
 }
 /* Custom styles for Contact component */
 .custom-list-item {
-  background: rgba(255, 255, 255, 0.6); /* Transparent white background */
+  background: #ffffff70; /* Transparent white background */
   backdrop-filter: blur(5px); /* Blur effect */
   border: 1px solid var(--primary); 
   border-radius: 0.5rem; /* Rounded corners */
@@ -23,4 +23,9 @@
 
 .custom-list-item a:hover {
   text-decoration: underline; /* Underline on hover */
+}
+
+.contact-form{
+  background-color: #ffffff56;
+  backdrop-filter: blur(2px);
 }

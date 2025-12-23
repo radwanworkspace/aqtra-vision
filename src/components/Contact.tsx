@@ -80,21 +80,20 @@ const Contact = () => {
                 Get In Touch
               </h3>
             </div>
-              <p className="text-muted">
-                Ready to start your project? Contact us today for a consultation
-              </p>
+            <p className="text-muted">
+              Ready to start your project? Contact us today for a consultation
+            </p>
           </div>
           {/* Contact Information */}
 
           <div className="col-lg-6" data-aos="fade-right" >
 
-            <h3 className="h5 mb-3" onClick={
-              () => {
-                toast({
-                  title: 'Message Sent!',
-                  description: 'Thank you for contacting AQTRA. We will get back to you soon.',
-                });
-              }}>Contact Information</h3>
+            <h3 className="h5 mb-3" onClick={() => {
+              toast({
+                title: 'Message Sent!',
+                description: 'Thank you for contacting AQTRA. We will get back to you soon.',
+              });
+            }}>Contact Information</h3>
             <p className="text-muted mb-4">
               Reach out to our team for any inquiries about our services or to discuss your next project.
             </p>
@@ -121,7 +120,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="col-lg-6" data-aos="fade-left">
-            <form onSubmit={handleSubmit} className="p-4 rounded bg-white shadow-sm">
+            <form onSubmit={handleSubmit} className="p-4 rounded contact-form shadow-sm">
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Full Name *
