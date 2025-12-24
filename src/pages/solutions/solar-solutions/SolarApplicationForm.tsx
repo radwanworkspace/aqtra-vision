@@ -15,8 +15,8 @@ import './SolarApplicationForm.css';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const SolarApplicationForm: React.FC = () => {
-  const [monthlyKWh, setMonthlyKWh] = useState<number | ''>(1000);
-  const [monthlyBill, setMonthlyBill] = useState<number | ''>('');
+  const [monthlyKWh, setMonthlyKWh] = useState<number | ''>('');
+  const [monthlyBill, setMonthlyBill] = useState<number | ''>(2000);
   const [availableArea, setAvailableArea] = useState<number | ''>('');
   const [hasGrid, setHasGrid] = useState<boolean>(true);
   const [wantBackup, setWantBackup] = useState<boolean>(false);
@@ -54,9 +54,10 @@ const SolarApplicationForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const hasMonthlyBill = (typeof monthlyBill === 'number' && monthlyBill > 0 );
     const monthly = typeof monthlyKWh === 'number' && monthlyKWh > 0
       ? monthlyKWh
-      : (typeof monthlyBill === 'number' && monthlyBill > 0 ? monthlyKwhFromBill(monthlyBill, electricityTariff) : 0);
+      : (hasMonthlyBill ? monthlyKwhFromBill(monthlyBill, electricityTariff) : 0);
     if (!monthly) {
       setResult(<span className='text-danger'>Please provide a valid average monthly energy consumption or monthly bill amount.</span>);
       return;
@@ -97,7 +98,7 @@ const SolarApplicationForm: React.FC = () => {
     if (!hasGrid) recommendedType = <><FontAwesomeIcon icon={faCarBattery} className='text-primary me-1' /> Off-Grid (Standalone)</>;
     else if (wantBackup) recommendedType = <><FontAwesomeIcon icon={faSolarPanel} className='text-primary me-1' /> Hybrid (With Battery Backup)</>;
     if (primaryUse === 'agricultural') recommendedType = <><FontAwesomeIcon icon={faTractor} className='text-primary me-1' /> Solar Pumping System</>;
-    if (hugeBill) recommendedType = <><FontAwesomeIcon icon={faDollarSign} className='text-primary me-1' /> Larger On-Grid System</>;
+    // if (hugeBill) recommendedType = <><FontAwesomeIcon icon={faDollarSign} className='text-primary me-1' /> Larger On-Grid System</>;
     let panelsMsg = <><FontAwesomeIcon icon={faSolarPanel} className='text-primary me-1' /> {panels} panels (~{round(systemKw)} kW)</>;
 
     let typeMsg = <></>;
@@ -129,17 +130,19 @@ const SolarApplicationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="col-md-12">
-          <div className="card h-100 shadow-sm">
-            <div className="card-body">
-              <h6 className="card-title">Electricity Costs (with VAT)</h6>
-              <ul className="mb-0">
-                <li>Monthly bill (before solar): {round(monthlyBillComputed, 2)} SAR</li>
-                <li>Effective tariff: {round(effectiveKwhPrice, 3)} SAR/kWh</li>
-              </ul>
+        {hasMonthlyBill || hasGrid ?
+          (<div className="col-md-12">
+            <div className="card h-100 shadow-sm">
+              <div className="card-body">
+                <h6 className="card-title">Electricity Costs (with VAT)</h6>
+                <ul className="mb-0">
+                  <li>Monthly bill (before solar): {round(monthlyBillComputed, 2)} SAR</li>
+                  <li>Effective tariff: {round(effectiveKwhPrice, 3)} SAR/kWh</li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </div>
+          </div>) : null
+        }
 
         <div className="col-md-12">
           <div className="card h-100 shadow-sm">
@@ -185,53 +188,63 @@ const SolarApplicationForm: React.FC = () => {
 
               <h3 className='display-4 text-center mb-4'>Tell us about your needs</h3>
               <form className='row' onSubmit={handleSubmit}>
-                <div className='d-flex flex-wrap justify-content-between mb-3'>
-                  <div className="w-25 mb-3">
-                    <label className="form-label d-flex align-items-center flex-column">
-                      <FontAwesomeIcon icon={faTachometerAlt} className='fa-2x text-primary me-1' />
-                      <small className='text-center'>Average monthly energy consumption (kWh)</small>
-                    </label>
-                    <input type="number" className="form-control text-center" value={monthlyKWh as any} onChange={e => setMonthlyKWh(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
-                  </div>
+                <div className='col-12 d-flex flex-wrap justify-content-between mb-3'>
+                  <div className='row'>
 
-
-                  <div className="w-25 mb-3">
-                    <label className="form-label d-flex align-items-center flex-column">
-                      {/* <span className='fs-5 text-primary fw-bold me-1'>&#x20C1;</span> */}
-                      <FontAwesomeIcon icon={faMoneyBill} className='fa-2x text-primary me-1' />
-
-                      <small className='text-center'>Average monthly electricity bill (optional)</small>
-                    </label>
-                    <div className="input-group">
-                      <input type="number" className="form-control text-center" value={monthlyBill as any} onChange={e => setMonthlyBill(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
-                      <span className="input-group-text text-primary bg-white">&#x20C1;</span>
+                    <div className="col-md-4 mb-3">
+                      <div className=' card p-2'>
+                        <label className="form-label d-flex align-items-center flex-column">
+                          <FontAwesomeIcon icon={faTachometerAlt} className='fa-2x text-primary me-1' />
+                          <small className='text-center'>Average monthly energy consumption (kWh)</small>
+                        </label>
+                        <input type="number" className="form-control text-center" value={monthlyKWh as any} onChange={e => setMonthlyKWh(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="w-25 mb-3">
-                    <label className="form-label d-flex align-items-center flex-column">
-                      <FontAwesomeIcon icon={faRulerCombined} className='fa-2x text-primary me-1' />
-                      <small className='text-center'>Available installation area (m²) (optional)</small>
-                    </label>
-                    <input type="number" className="form-control text-center" value={availableArea as any} onChange={e => setAvailableArea(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
-                  </div>
+                    <div className="col-md-4 mb-3">
+                      <div className=' card p-2'>
+                        <label className="form-label d-flex align-items-center flex-column">
+                          {/* <span className='fs-5 text-primary fw-bold me-1'>&#x20C1;</span> */}
+                          <FontAwesomeIcon icon={faMoneyBill} className='fa-2x text-primary me-1' />
 
-                  <div className="w-25 mb-3">
-                    <label className="form-label d-flex align-items-center flex-column">
-                      <FontAwesomeIcon icon={faSun} className='fa-2x text-primary me-1' />
-                      <small className='text-center'>Peak Sun Hours (PSH)</small>
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control text-center"
-                      value={peakSunHours}
-                      onChange={e => setPeakSunHours(Number(e.target.value) || 5)}
-                      min={0}
-                      step={0.1}
-                    />
-                    <small className="form-text text-muted">
-                      Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA.
-                    </small>
+                          <small className='text-center'>Average monthly electricity bill (optional)</small>
+                        </label>
+                        <div className="input-group">
+                          <input type="number" className="form-control text-center" value={monthlyBill as any} onChange={e => setMonthlyBill(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                          <span className="input-group-text text-primary bg-white">&#x20C1;</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+                      <div className=' card p-2'>
+                        <label className="form-label d-flex align-items-center flex-column">
+                          <FontAwesomeIcon icon={faRulerCombined} className='fa-2x text-primary me-1' />
+                          <small className='text-center'>Available installation area (m²) (optional)</small>
+                        </label>
+                        <input type="number" className="form-control text-center" value={availableArea as any} onChange={e => setAvailableArea(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                      </div>
+                    </div>
+
+                    <div className="col-md-4 mb-3">
+                      <div className=' card p-2'>
+                        <label className="form-label d-flex align-items-center flex-column">
+                          <FontAwesomeIcon icon={faSun} className='fa-2x text-primary me-1' />
+                          <small className='text-center'>Peak Sun Hours (PSH)</small>
+                        </label>
+                        <input
+                          type="number"
+                          className="form-control text-center"
+                          value={peakSunHours}
+                          onChange={e => setPeakSunHours(Number(e.target.value) || 5)}
+                          min={0}
+                          step={0.1}
+                        />
+                        <small className="form-text text-muted">
+                          Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA.
+                        </small>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -356,6 +369,7 @@ const SolarApplicationForm: React.FC = () => {
                             className="form-select"
                             value={industryFuelCompBand}
                             onChange={e => setIndustryFuelCompBand(e.target.value as IndustryFuelCompBand)}
+                          //   disabled={!hasGrid} Disable if grid is not available
                           >
                             <option value="standard">Industrial (grid-connected)</option>
                             <option value="lte20">Fuel-cost compensation ≤ 20%</option>
@@ -369,7 +383,7 @@ const SolarApplicationForm: React.FC = () => {
                             className="form-select"
                             value={industryConnection}
                             onChange={e => setIndustryConnection(e.target.value as IndustryConnection)}
-                            disabled={industryFuelCompBand === 'standard'}
+                            disabled={industryFuelCompBand === 'standard' || !hasGrid} // Disable if standard or no grid
                           >
                             <option value="grid">Grid-connected</option>
                             <option value="powerPlant">Power-plant connected</option>
