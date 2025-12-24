@@ -32,11 +32,12 @@
   margin-right: 0.5rem;
 }
 
-.rate-us-section h2{
+.rate-us-section h2 {
   margin-bottom: 1rem;
   font-weight: 100;
   font-size: 2.0rem;
 }
+
 .rate-us-stars {
   display: flex;
   justify-content: end;
@@ -61,5 +62,5 @@
 }
 
 .map-con {
-background: transparent;
+  background: transparent;
 }

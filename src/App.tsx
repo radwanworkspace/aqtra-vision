@@ -63,11 +63,11 @@ const App = () => {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/hvac-solutions" element={<HVACSolutions />} />
               <Route path="/solar-solutions" element={<SolarSolutions />} />
-              <Route path="/on-grid" element={<OnGrid />} />
-              <Route path="/off-grid" element={<OffGrid />} />
-              <Route path="/hybrid" element={<Hybrid />} />
-              <Route path="/pump" element={<Pump />} />
-              <Route path="/solar-application" element={<SolarApplicationForm />} />
+              <Route path="/solar/on-grid" element={<OnGrid />} />
+              <Route path="/solar/off-grid" element={<OffGrid />} />
+              <Route path="/solar/hybrid" element={<Hybrid />} />
+              <Route path="/solar/pump" element={<Pump />} />
+              <Route path="/solar-calculation" element={<SolarApplicationForm />} />
               <Route path="/saudi-vision-2030" element={<SaudiVision2030 />} />
               <Route path="/src/assets/*" element={null} />
               <Route path="*" element={<NotFound />} />
