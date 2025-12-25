@@ -49,7 +49,7 @@ const ContactPage: React.FC = () => {
             <img src={GoogleMapLogo} alt="Google Map Logo" className="google-map-logo" />
             <div>
 
-              <h2 className='display-6 mb-1'>Rate Us on Google</h2>
+              <h2 className='display-6 mb-1'>Rate us on Google</h2>
 
               <div className="rate-us-stars">
                 <span className="star"><FontAwesomeIcon icon={faStar} /></span>

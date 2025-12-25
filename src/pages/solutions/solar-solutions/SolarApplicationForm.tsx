@@ -54,7 +54,7 @@ const SolarApplicationForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const hasMonthlyBill = (typeof monthlyBill === 'number' && monthlyBill > 0 );
+    const hasMonthlyBill = (typeof monthlyBill === 'number' && monthlyBill > 0);
     const monthly = typeof monthlyKWh === 'number' && monthlyKWh > 0
       ? monthlyKWh
       : (hasMonthlyBill ? monthlyKwhFromBill(monthlyBill, electricityTariff) : 0);
@@ -181,254 +181,288 @@ const SolarApplicationForm: React.FC = () => {
     <>
       <HeaderBanner title="Solar Application Form" subtitle="Answer a few questions to get a recommended system." backgroundImage="/src/assets/hero-bg-2.jpg" />
 
-      <section className="container py-5">
+      <section className="container-fluid py-5">
         <div className="row justify-content-center">
-          <div className="col-md-10 col-lg-9">
-            <div className="card card-form-holder p-4">
+          <div className="col-md-11">
+            <div className="row">
+              <div className="col-md-8">
+                <div className="card card-form-holder p-4">
+                  <h4 className='display-6 text-center mb-4'>Tell us about your needs</h4>
+                  <form className='row align-items-baseline' onSubmit={handleSubmit}>
 
-              <h3 className='display-4 text-center mb-4'>Tell us about your needs</h3>
-              <form className='row' onSubmit={handleSubmit}>
-                <div className='col-12 d-flex flex-wrap justify-content-between mb-3'>
-                  <div className='row'>
+                    <div className="col-md-6 mb-3">
+                      <div className="mb-3 mt-4">
+                        <h3 className='display-1 fs-4'>
+                          <FontAwesomeIcon icon={faSolarPanel} className='text-primary' />
+                          Primary use</h3>
+                        <div className='d-flex card flex-row flex-wrap'>
 
-                    <div className="col-md-4 mb-3">
-                      <div className=' card p-2'>
-                        <label className="form-label d-flex align-items-center flex-column">
-                          <FontAwesomeIcon icon={faTachometerAlt} className='fa-2x text-primary me-1' />
-                          <small className='text-center'>Average monthly energy consumption (kWh)</small>
-                        </label>
-                        <input type="number" className="form-control text-center" value={monthlyKWh as any} onChange={e => setMonthlyKWh(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                          <div className='m-1'>
+                            <input type="radio" className="btn-check" name='primaryUse' id="btn-check-home" value="home" autoComplete="off"
+                              onChange={e => setPrimaryUse(e.target.value)}
+                              checked={primaryUse === 'home'}
+                            />
+                            <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-home">
+                              <FontAwesomeIcon icon={faHome} className='fa-2x m-1' />
+                              <span>Home</span>
+                            </label>
+                          </div>
+
+                          <div className='m-1'>
+                            <input type="radio" className="btn-check" name='primaryUse' id="btn-check-bank" value="bank" autoComplete="off"
+                              onChange={e => setPrimaryUse(e.target.value)}
+                              checked={primaryUse === 'bank'}
+                            />
+                            <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-bank">
+                              <FontAwesomeIcon icon={faBank} className='fa-2x m-1' />
+                              <span>Bank</span>
+                            </label>
+                          </div>
+
+                          <div className='m-1'>
+                            <input type="radio" className="btn-check" name='primaryUse' id="btn-check-hospital" value="hospital" autoComplete="off"
+                              onChange={e => setPrimaryUse(e.target.value)}
+                              checked={primaryUse === 'hospital'}
+                            />
+                            <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-hospital">
+                              <FontAwesomeIcon icon={faHospital} className='fa-2x m-1' />
+                              <span>Hospital</span>
+                            </label>
+                          </div>
+
+                          <div className='m-1'>
+                            <input type="radio" className="btn-check" name='primaryUse' id="btn-check-tractor" value="agricultural" autoComplete="off"
+                              onChange={e => setPrimaryUse(e.target.value)}
+                              checked={primaryUse === 'agricultural'}
+                            />
+                            <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-tractor">
+                              <FontAwesomeIcon icon={faTractor} className='fa-2x m-1' />
+                              <span>Agricultural</span>
+                            </label>
+                          </div>
+
+
+                          <div className='m-1'>
+                            <input type="radio" className="btn-check" name='primaryUse' id="btn-check-industry" value="industry" autoComplete="off"
+                              onChange={e => setPrimaryUse(e.target.value)}
+                              checked={primaryUse === 'industry'}
+                            />
+                            <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-industry">
+                              <FontAwesomeIcon icon={faIndustry} className='fa-2x m-1' />
+                              <span>Industry</span>
+                            </label>
+                          </div>
+                        </div>
                       </div>
+                      {primaryUse === 'industry' && (
+                        <div className="mb-3">
+                          <div className="border rounded p-3">
+                            <div className="fw-bold mb-2">Industrial tariff options</div>
+                            <div className="row g-2">
+                              <div className="col-md-6">
+                                <label className="form-label">Fuel-cost compensation band</label>
+                                <select
+                                  className="form-select"
+                                  value={industryFuelCompBand}
+                                  onChange={e => setIndustryFuelCompBand(e.target.value as IndustryFuelCompBand)}
+                                // disabled={!hasGrid} Disable if grid is not available
+                                >
+                                  <option value="standard">Industrial (grid-connected)</option>
+                                  <option value="lte20">Fuel-cost compensation ≤ 20%</option>
+                                  <option value="gt20">Fuel-cost compensation &gt; 20%</option>
+                                </select>
+                              </div>
+
+                              <div className="col-md-6">
+                                <label className="form-label">Connection type</label>
+                                <select
+                                  className="form-select"
+                                  value={industryConnection}
+                                  onChange={e => setIndustryConnection(e.target.value as IndustryConnection)}
+                                  disabled={industryFuelCompBand === 'standard' || !hasGrid} // Disable if standard or no grid
+                                >
+                                  <option value="grid">Grid-connected</option>
+                                  <option value="powerPlant">Power-plant connected</option>
+                                </select>
+                                {industryFuelCompBand === 'standard' && (
+                                  <div className="form-text">Standard industrial tariff is defined as grid-connected.</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="col-md-4 mb-3">
-                      <div className=' card p-2'>
-                        <label className="form-label d-flex align-items-center flex-column">
-                          {/* <span className='fs-5 text-primary fw-bold me-1'>&#x20C1;</span> */}
-                          <FontAwesomeIcon icon={faMoneyBill} className='fa-2x text-primary me-1' />
+                    <div className='col-md-6'>
+                      <h3 className='display-1 fs-4'>
+                        <FontAwesomeIcon icon={faSolarPanel} className='text-primary' />
+                        Solar Solutions
+                      </h3>
+                      <div className='card p-3 mb-3'>
 
-                          <small className='text-center'>Average monthly electricity bill (optional)</small>
-                        </label>
-                        <div className="input-group">
-                          <input type="number" className="form-control text-center" value={monthlyBill as any} onChange={e => setMonthlyBill(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
-                          <span className="input-group-text text-primary bg-white">&#x20C1;</span>
+                        <div className="form-check form-switch mb-2">
+                          <input className="form-check-input" type="checkbox" role="switch" id="grid" checked={hasGrid} onChange={e => setHasGrid(e.target.checked)} />
+                          <label className="form-check-label" htmlFor="grid">
+                            <FontAwesomeIcon icon={faBolt} className='text-warning' />
+                            Do you have grid connection?</label>
+                        </div>
+
+                        <div className="form-check form-switch mb-2">
+                          <input className="form-check-input" type="checkbox" role="switch" id="backup" checked={wantBackup} onChange={e => setWantBackup(e.target.checked)} />
+                          <label className="form-check-label" htmlFor="backup">
+                            <span className="fa-layers fa-fw">
+                              <FontAwesomeIcon icon={faBolt} className='text-warning' />
+                              <FontAwesomeIcon icon={faSlash} className='text-danger' transform="grow-2" />
+                            </span>
+                            Do you suffer from frequent power outages?</label>
+                        </div>
+
+                        <div className="form-check form-switch mb-2">
+                          <input className="form-check-input" type="checkbox" role="switch" id="hugeBill" checked={hugeBill} onChange={e => setHugeBill(e.target.checked)} />
+                          <label className="form-check-label" htmlFor="hugeBill">
+                            <FontAwesomeIcon icon={faHandHoldingUsd} className='text-warning' />
+                            Are you suffering from a bill price that is too high?</label>
                         </div>
                       </div>
                     </div>
 
-                    <div className="col-md-4 mb-3">
-                      <div className=' card p-2'>
-                        <label className="form-label d-flex align-items-center flex-column">
-                          <FontAwesomeIcon icon={faRulerCombined} className='fa-2x text-primary me-1' />
-                          <small className='text-center'>Available installation area (m²) (optional)</small>
-                        </label>
-                        <input type="number" className="form-control text-center" value={availableArea as any} onChange={e => setAvailableArea(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+
+                    <div className='col-12 d-flex flex-wrap justify-content-between mb-3'>
+                      <div className='row'>
+
+                        <div className="col-md-4 col-lg-3 mb-3">
+                          <div className=' card p-2'>
+                            <label className="form-label d-flex align-items-center flex-column">
+                              <FontAwesomeIcon icon={faTachometerAlt} className='fa-2x text-primary me-1' />
+                              <small className='text-center'>Monthly consumption</small>
+                            </label>
+                            <input type="number" className="form-control text-center" value={monthlyKWh as any} onChange={e => setMonthlyKWh(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                            <small className="form-text text-muted">
+                              Average monthly energy consumption (kWh) (optional).
+                              Leave blank to estimate from monthly bill.
+                            </small>
+                          </div>
+                        </div>
+
+                        <div className="col-md-4 col-lg-3 mb-3">
+                          <div className=' card p-2'>
+                            <label className="form-label d-flex align-items-center flex-column">
+                              {/* <span className='fs-5 text-primary fw-bold me-1'>&#x20C1;</span> */}
+                              <FontAwesomeIcon icon={faMoneyBill} className='fa-2x text-primary me-1' />
+
+                              <small className='text-center'>Monthly bill</small>
+                            </label>
+                            <div className="input-group">
+                              <input type="number" className="form-control text-center" value={monthlyBill as any} onChange={e => setMonthlyBill(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                              <span className="input-group-text text-primary bg-white">&#x20C1;</span>
+                            </div>
+                            <small className="form-text text-muted">
+                              Average monthly electricity bill (optional).
+                              Leave blank if unknown.
+                            </small>
+                          </div>
+                        </div>
+
+                        <div className="col-md-4 col-lg-3 mb-3">
+                          <div className=' card p-2'>
+                            <label className="form-label d-flex align-items-center flex-column">
+                              <FontAwesomeIcon icon={faRulerCombined} className='fa-2x text-primary me-1' />
+                              <small className='text-center'>Area</small>
+                            </label>
+                            <input type="number" className="form-control text-center" value={availableArea as any} onChange={e => setAvailableArea(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+                            <small className="form-text text-muted">
+                              Available installation area (m²) (optional).
+                              Leave blank if unknown.
+                            </small>
+                          </div>
+                        </div>
+
+                        <div className="col-md-4 col-lg-3 mb-3">
+                          <div className='card p-2'>
+                            <label className="form-label d-flex align-items-center flex-column">
+                              <FontAwesomeIcon icon={faSun} className='fa-2x text-primary me-1' />
+                              <small className='text-center'>Peak Sun Hours (PSH)</small>
+                            </label>
+                            <input
+                              type="number"
+                              className="form-control text-center"
+                              value={peakSunHours}
+                              onChange={e => setPeakSunHours(Number(e.target.value) || 5)}
+                              min={0}
+                              step={0.1}
+                            />
+                            <small className="form-text text-muted">
+                              Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA.
+                            </small>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="col-md-4 mb-3">
-                      <div className=' card p-2'>
-                        <label className="form-label d-flex align-items-center flex-column">
-                          <FontAwesomeIcon icon={faSun} className='fa-2x text-primary me-1' />
-                          <small className='text-center'>Peak Sun Hours (PSH)</small>
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control text-center"
-                          value={peakSunHours}
-                          onChange={e => setPeakSunHours(Number(e.target.value) || 5)}
-                          min={0}
-                          step={0.1}
-                        />
-                        <small className="form-text text-muted">
-                          Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA.
+
+
+
+
+
+                    <div className='col-md-6'>
+                      <div className="mb-3">
+                        <label className="form-label d-flex align-items-center gap-2"><FontAwesomeIcon icon={faSolarPanel} className='text-primary' /> Panel price category</label>
+                        <div className="d-flex flex-wrap gap-2 flex-column">
+                          {(['economy', 'standard', 'premium'] as const).map(key => (
+                            <div key={key} className='form-check form-check-inline border rounded px-3 py-2'>
+                              <input className="form-check-input" type="radio" name="panelTier" id={`panel-${key}`} value={key} checked={panelTier === key} onChange={e => setPanelTier(e.target.value as any)} />
+                              <label className="form-check-label" htmlFor={`panel-${key}`}>
+                                <span className='fw-bold text-capitalize'>{panelPricing[key].label}</span>
+                                <span className='d-block small text-muted'>{panelPricing[key].costPerPanel} SAR / panel — {panelPricing[key].note}</span>
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div className="d-flex justify-content-end gap-2">
+                      <button className="btn btn-primary d-flex w-100 justify-content-center flex-row align-items-center" type="submit">
+                        <FontAwesomeIcon icon={faCalculator} className='fa-3x' />
+                        <small className='ms-2'>
+                          Calculate and Get Recommendations
                         </small>
-                      </div>
+                      </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
-
-
-                <div className='col-md-6'>
-
-                  <div className="form-check form-switch mb-2">
-                    <input className="form-check-input" type="checkbox" role="switch" id="grid" checked={hasGrid} onChange={e => setHasGrid(e.target.checked)} />
-                    <label className="form-check-label" htmlFor="grid">
-                      <FontAwesomeIcon icon={faBolt} className='text-warning' />
-                      Do you have grid connection?</label>
-                  </div>
-
-                  <div className="form-check form-switch mb-2">
-                    <input className="form-check-input" type="checkbox" role="switch" id="backup" checked={wantBackup} onChange={e => setWantBackup(e.target.checked)} />
-                    <label className="form-check-label" htmlFor="backup">
-                      <span className="fa-layers fa-fw">
-                        <FontAwesomeIcon icon={faBolt} className='text-warning' />
-                        <FontAwesomeIcon icon={faSlash} className='text-danger' transform="grow-2" />
-                      </span>
-                      Do you suffer from frequent power outages?</label>
-                  </div>
-
-                  <div className="form-check form-switch mb-2">
-                    <input className="form-check-input" type="checkbox" role="switch" id="hugeBill" checked={hugeBill} onChange={e => setHugeBill(e.target.checked)} />
-                    <label className="form-check-label" htmlFor="hugeBill">
-                      <FontAwesomeIcon icon={faHandHoldingUsd} className='text-warning' />
-                      Are you suffering from a bill price that is too high?</label>
-                  </div>
-                </div>
-
-
-
-                <div className='col-md-6'>
-                  <div className="mb-3">
-                    <label className="form-label d-flex align-items-center gap-2"><FontAwesomeIcon icon={faSolarPanel} className='text-primary' /> Panel price category</label>
-                    <div className="d-flex flex-wrap gap-2 flex-column">
-                      {(['economy', 'standard', 'premium'] as const).map(key => (
-                        <div key={key} className='form-check form-check-inline border rounded px-3 py-2'>
-                          <input className="form-check-input" type="radio" name="panelTier" id={`panel-${key}`} value={key} checked={panelTier === key} onChange={e => setPanelTier(e.target.value as any)} />
-                          <label className="form-check-label" htmlFor={`panel-${key}`}>
-                            <span className='fw-bold text-capitalize'>{panelPricing[key].label}</span>
-                            <span className='d-block small text-muted'>{panelPricing[key].costPerPanel} SAR / panel — {panelPricing[key].note}</span>
-                          </label>
+              </div>
+              <div className="col-md-4">
+                <div className="card card-form-holder p-4">
+                  <div className="mt-4">
+                    <h4 className='display-6 text-center mb-4'>Recommendation</h4>
+                    {result && (
+                      <>
+                        <div className='container' style={{ whiteSpace: 'pre-wrap' }}>
+                          {result}
                         </div>
-                      ))}
-                    </div>
+                        <p className="mt-3 text-muted">
+                          * Please note: The estimated prices provided include only the cost of solar panels. Additional components such as batteries, wiring, and inverters are not included. This calculation is intended as a preliminary step to help you evaluate the feasibility of transitioning to solar energy.
+                        </p>
+                      </>
+                    )}
+                    <a
+                      href="https://wa.me/966562405666?text=I%20have%20completed%20the%20solar%20application%20form%20and%20would%20like%20to%20get%20a%20free%20consultation%20and%20quote."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-success btn-lg w-100 mt-3"
+                    >
+                      <FontAwesomeIcon icon={faWhatsapp} className='me-2' />
+                      Contact via WhatsApp for Free Consultant Quote
+                    </a>
                   </div>
+                  <Link to="/solar-solutions" className="btn my-2 btn-outline-secondary">Back to Solar systems</Link>
                 </div>
-
-
-                <div className="mb-3 mt-4">
-                  <h3 className='display-1 fs-4'>Primary use</h3>
-                  <div className='d-flex flex-wrap'>
-
-                    <div className='m-1'>
-                      <input type="radio" className="btn-check" name='primaryUse' id="btn-check-home" value="home" autoComplete="off"
-                        onChange={e => setPrimaryUse(e.target.value)}
-                        checked={primaryUse === 'home'}
-                      />
-                      <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-home">
-                        <FontAwesomeIcon icon={faHome} className='fa-2x m-1' />
-                        <span>Home</span>
-                      </label>
-                    </div>
-
-                    <div className='m-1'>
-                      <input type="radio" className="btn-check" name='primaryUse' id="btn-check-bank" value="bank" autoComplete="off"
-                        onChange={e => setPrimaryUse(e.target.value)}
-                        checked={primaryUse === 'bank'}
-                      />
-                      <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-bank">
-                        <FontAwesomeIcon icon={faBank} className='fa-2x m-1' />
-                        <span>Bank</span>
-                      </label>
-                    </div>
-
-                    <div className='m-1'>
-                      <input type="radio" className="btn-check" name='primaryUse' id="btn-check-hospital" value="hospital" autoComplete="off"
-                        onChange={e => setPrimaryUse(e.target.value)}
-                        checked={primaryUse === 'hospital'}
-                      />
-                      <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-hospital">
-                        <FontAwesomeIcon icon={faHospital} className='fa-2x m-1' />
-                        <span>Hospital</span>
-                      </label>
-                    </div>
-
-                    <div className='m-1'>
-                      <input type="radio" className="btn-check" name='primaryUse' id="btn-check-tractor" value="agricultural" autoComplete="off"
-                        onChange={e => setPrimaryUse(e.target.value)}
-                        checked={primaryUse === 'agricultural'}
-                      />
-                      <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-tractor">
-                        <FontAwesomeIcon icon={faTractor} className='fa-2x m-1' />
-                        <span>Agricultural</span>
-                      </label>
-                    </div>
-
-
-                    <div className='m-1'>
-                      <input type="radio" className="btn-check" name='primaryUse' id="btn-check-industry" value="industry" autoComplete="off"
-                        onChange={e => setPrimaryUse(e.target.value)}
-                        checked={primaryUse === 'industry'}
-                      />
-                      <label className="btn btn-outline-primary d-flex align-items-center flex-column" htmlFor="btn-check-industry">
-                        <FontAwesomeIcon icon={faIndustry} className='fa-2x m-1' />
-                        <span>Industry</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                {primaryUse === 'industry' && (
-                  <div className="col-12 mb-3">
-                    <div className="border rounded p-3">
-                      <div className="fw-bold mb-2">Industrial tariff options</div>
-                      <div className="row g-2">
-                        <div className="col-md-6">
-                          <label className="form-label">Fuel-cost compensation band</label>
-                          <select
-                            className="form-select"
-                            value={industryFuelCompBand}
-                            onChange={e => setIndustryFuelCompBand(e.target.value as IndustryFuelCompBand)}
-                          //   disabled={!hasGrid} Disable if grid is not available
-                          >
-                            <option value="standard">Industrial (grid-connected)</option>
-                            <option value="lte20">Fuel-cost compensation ≤ 20%</option>
-                            <option value="gt20">Fuel-cost compensation &gt; 20%</option>
-                          </select>
-                        </div>
-
-                        <div className="col-md-6">
-                          <label className="form-label">Connection type</label>
-                          <select
-                            className="form-select"
-                            value={industryConnection}
-                            onChange={e => setIndustryConnection(e.target.value as IndustryConnection)}
-                            disabled={industryFuelCompBand === 'standard' || !hasGrid} // Disable if standard or no grid
-                          >
-                            <option value="grid">Grid-connected</option>
-                            <option value="powerPlant">Power-plant connected</option>
-                          </select>
-                          {industryFuelCompBand === 'standard' && (
-                            <div className="form-text">Standard industrial tariff is defined as grid-connected.</div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="d-flex justify-content-end gap-2">
-                  <button className="btn btn-primary d-flex justify-content-center flex-column align-items-center" type="submit">
-                    <FontAwesomeIcon icon={faCalculator} className='fa-3x' />
-                    <small className='ms-2'>
-                      Get Recommendations
-                    </small>
-                  </button>
-                </div>
-              </form>
-
-              {result && (
-                <div className="mt-4 alert alert-success">
-                  <h5 className='display-6'>Recommendation</h5>
-                  <div className='container' style={{ whiteSpace: 'pre-wrap' }}>
-                    {result}
-                  </div>
-                  <p className="mt-3 text-muted">
-                    * Please note: The estimated prices provided include only the cost of solar panels. Additional components such as batteries, wiring, and inverters are not included. This calculation is intended as a preliminary step to help you evaluate the feasibility of transitioning to solar energy.
-                  </p>
-                  <a
-                    href="https://wa.me/yourwhatsappnumber?text=I%20am%20interested%20in%20a%20free%20solar%20consultation%20quote."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-success btn-lg w-100 mt-3"
-                  >
-                    <FontAwesomeIcon icon={faWhatsapp} className='me-2' />
-                    Contact via WhatsApp for Free Consultant Quote
-                  </a>
-                </div>
-              )}
-              <Link to="/solar-solutions" className="btn my-2 btn-outline-secondary">Back to Solar systems</Link>
-
+              </div>
             </div>
           </div>
         </div>
