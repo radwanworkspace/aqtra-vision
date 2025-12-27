@@ -203,12 +203,13 @@ export const PANEL_PRICING: Record<PanelTierKey, { label: string; costPerPanel: 
 };
 
 const SIZE_PRICING_TIERS: Record<number, number> = {
-  10: 55000,
-  15: 50000,
-  20: 60000,
-  30: 85000,
-  50: 145000,
-  100: 290000,
+  // Per-kW rate is capped at ~3,500 SAR for small systems and floors at ~2,800 SAR for large systems up to 500 kW.
+  10: 35000,   // 3,500 SAR/kW
+  15: 50000,   // 3,600 SAR/kW
+  20: 60000,   // 3,500 SAR/kW
+  30: 85000,  // 3,500 SAR/kW
+  50: 145000,  // 3,000 SAR/kW
+  100: 290000, // 2,900 SAR/kW
 };
 
 const LOSSES = 0.85; // design losses accounted when sizing kW
@@ -277,9 +278,22 @@ function getTierPrice(kw: number) {
   const tiers = Object.keys(SIZE_PRICING_TIERS)
     .map(Number)
     .sort((a, b) => a - b);
-  for (const t of tiers) {
-    if (kw <= t) return SIZE_PRICING_TIERS[t];
+  let lowerTier = tiers[0];
+
+  if (kw <= lowerTier) return SIZE_PRICING_TIERS[lowerTier];
+
+  for (let i = 1; i < tiers.length; i++) {
+    const upperTier = tiers[i];
+    if (kw <= upperTier) {
+      // Linearly interpolate between lower and upper tier to avoid big price jumps for mid-size systems.
+      const lowerPrice = SIZE_PRICING_TIERS[lowerTier];
+      const upperPrice = SIZE_PRICING_TIERS[upperTier];
+      const ratio = (kw - lowerTier) / (upperTier - lowerTier);
+      return Math.round(lowerPrice + ratio * (upperPrice - lowerPrice));
+    }
+    lowerTier = upperTier;
   }
+
   const lastKw = tiers[tiers.length - 1];
   const lastPrice = SIZE_PRICING_TIERS[lastKw];
   const perKw = lastPrice / lastKw;

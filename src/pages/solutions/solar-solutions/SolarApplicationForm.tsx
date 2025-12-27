@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderBanner from '@/components/HeaderBanner';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faBank, faTractor, faIndustry, faHome, faSolarPanel, faSave, faHospital, faSlash, faHandHolding, faHandHoldingUsd, faRulerCombined, faDollarSign, faTachometerAlt, faMoneyBill, faCarBattery, faExclamationTriangle, faSun, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faBolt, faBank, faTractor, faIndustry, faHome, faSolarPanel, faSave, faHospital, faSlash, faHandHolding, faHandHoldingUsd, faRulerCombined, faDollarSign, faTachometerAlt, faMoneyBill, faCarBattery, faExclamationTriangle, faSun, faTrash, faPrint } from '@fortawesome/free-solid-svg-icons';
 import {
   computeSolarEstimate,
   PANEL_PRICING,
@@ -38,7 +38,7 @@ const SolarApplicationForm: React.FC = () => {
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [syncConsumption, setSyncConsumption] = useState<boolean>(false);
   const [syncBill, setSyncBill] = useState<boolean>(false);
-  const [syncArea, setSyncArea] = useState<boolean>(false);
+  const pageUrl = typeof window !== 'undefined' && window.location ? window.location.href : '';
 
   function round(val: number, decimals = 1) {
     const m = Math.pow(10, decimals);
@@ -53,6 +53,33 @@ const SolarApplicationForm: React.FC = () => {
     });
   }
 
+  function parseBool(val: string | null | undefined) {
+    return val === '1' || val === 'true';
+  }
+
+  function buildShareUrl() {
+    if (typeof window === 'undefined') return '';
+    const url = new URL(window.location.href.split('#')[0]);
+    const params = new URLSearchParams();
+    if (typeof monthlyKWh === 'number' && monthlyKWh > 0) params.set('mkwh', String(monthlyKWh));
+    if (typeof monthlyBill === 'number' && monthlyBill > 0) params.set('mbill', String(monthlyBill));
+    if (typeof availableArea === 'number' && availableArea > 0) params.set('area', String(availableArea));
+    params.set('grid', String(hasGrid ? 1 : 0));
+    params.set('backup', String(wantBackup ? 1 : 0));
+    params.set('huge', String(hugeBill ? 1 : 0));
+    params.set('use', primaryUse);
+    params.set('conn', industryConnection);
+    params.set('fuel', industryFuelCompBand);
+    params.set('panel', panelTier);
+    params.set('psh', String(peakSunHours));
+    params.set('supply', powerSupplyType);
+    params.set('gcost', String(generatorCostPerKwh));
+    params.set('gshare', String(generatorShare));
+    params.set('adv', String(showAdvanced ? 1 : 0));
+    url.search = params.toString();
+    return url.toString();
+  }
+
   function estimateBillFromKwh(kwh: number, use: string, options: { connection: IndustryConnection; fuelCompBand: IndustryFuelCompBand }): number | undefined {
     if (!Number.isFinite(kwh) || kwh <= 0) return undefined;
     const effective = effectivePriceForMonthlyKwh(kwh, use, options);
@@ -64,6 +91,10 @@ const SolarApplicationForm: React.FC = () => {
     monthlyKWh?: number;
     monthlyBill?: number;
   }): string | null {
+    if (powerSupplyType === 'generator' || powerSupplyType === 'none') {
+      return null; // skip validation for generator-only or no-grid scenarios
+    }
+
     if (typeof input.monthlyKWh === 'number' && typeof input.monthlyBill === 'number' && input.monthlyKWh > 0 && input.monthlyBill > 0) {
       const impliedRate = input.monthlyBill / input.monthlyKWh;
       if (impliedRate < 0.05) {
@@ -74,9 +105,9 @@ const SolarApplicationForm: React.FC = () => {
       }
     }
 
-    if (typeof input.monthlyKWh === 'number' && input.monthlyKWh > 50000 && (input.monthlyBill === undefined || input.monthlyBill <= 0)) {
-      return 'Consumption value is unusually high. Add a bill amount or recheck the kWh value.';
-    }
+    // if (typeof input.monthlyKWh === 'number' && input.monthlyKWh > 50000 && (input.monthlyBill === undefined || input.monthlyBill <= 0)) {
+    //   return 'Consumption value is unusually high. Add a bill amount or recheck the kWh value.';
+    // }
 
     return null;
   }
@@ -104,6 +135,7 @@ const SolarApplicationForm: React.FC = () => {
   };
 
   const HISTORY_KEY = 'solarCalcHistory';
+  const SHOW_ADVANCED_KEY = 'solarShowAdvanced';
 
   useEffect(() => {
     const raw = localStorage.getItem(HISTORY_KEY);
@@ -117,8 +149,54 @@ const SolarApplicationForm: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const mkwh = params.get('mkwh');
+    const mbill = params.get('mbill');
+    const area = params.get('area');
+    const grid = params.get('grid');
+    const backup = params.get('backup');
+    const huge = params.get('huge');
+    const use = params.get('use');
+    const conn = params.get('conn');
+    const fuel = params.get('fuel');
+    const panel = params.get('panel');
+    const psh = params.get('psh');
+    const supply = params.get('supply');
+    const gcost = params.get('gcost');
+    const gshare = params.get('gshare');
+    const adv = params.get('adv');
+
+    if (mkwh !== null && !Number.isNaN(Number(mkwh))) setMonthlyKWh(Number(mkwh));
+    if (mbill !== null && !Number.isNaN(Number(mbill))) setMonthlyBill(Number(mbill));
+    if (area !== null && !Number.isNaN(Number(area))) setAvailableArea(Number(area));
+    if (grid !== null) setHasGrid(parseBool(grid));
+    if (backup !== null) setWantBackup(parseBool(backup));
+    if (huge !== null) setHugeBill(parseBool(huge));
+    if (use) setPrimaryUse(use);
+    if (conn) setIndustryConnection(conn as IndustryConnection);
+    if (fuel) setIndustryFuelCompBand(fuel as IndustryFuelCompBand);
+    if (panel && (['economy', 'standard', 'premium'] as const).includes(panel as any)) setPanelTier(panel as PanelTierKey);
+    if (psh !== null && !Number.isNaN(Number(psh))) setPeakSunHours(Number(psh));
+    if (supply && (['grid', 'generator', 'mixed', 'none'] as const).includes(supply as any)) setPowerSupplyType(supply as any);
+    if (gcost !== null && !Number.isNaN(Number(gcost))) setGeneratorCostPerKwh(Number(gcost));
+    if (gshare !== null && !Number.isNaN(Number(gshare))) setGeneratorShare(Number(gshare));
+    if (adv !== null) setShowAdvanced(parseBool(adv));
+  }, []);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(SHOW_ADVANCED_KEY);
+    if (saved === 'true') setShowAdvanced(true);
+    if (saved === 'false') setShowAdvanced(false);
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
   }, [history]);
+
+  useEffect(() => {
+    localStorage.setItem(SHOW_ADVANCED_KEY, String(showAdvanced));
+  }, [showAdvanced]);
 
   useEffect(() => {
     // Keep hasGrid aligned with selected power supply
@@ -173,81 +251,135 @@ const SolarApplicationForm: React.FC = () => {
     }
 
     return (
-      <div className="row g-3">
-        <div className="col-12">
-          <div className="alert alert-success mb-2">
-            <div className="fw-bold">Recommended system: {recommendedType}</div>
-            <div>{typeMsg}</div>
-            <div><FontAwesomeIcon icon={faSolarPanel} className='text-primary me-1' /> {formatNumber(data.panels, 0)} panels (~{formatNumber(round(data.systemKw, 1), 1)} kW)</div>
-            <div>{areaMsg}</div>
-            <div>{areaAlertMessage}</div>
-            {hugeBill && (
-              <div className="alert alert-warning mt-2 mb-0 py-2">
-                <div className="fw-semibold">High bill focus</div>
-                <ul className="mb-0 ps-3">
-                  <li>⚡ Higher ROI potential — expect faster payback with your current bill level.</li>
-                  <li>💡 Consider upsizing the system by ~20-30% to maximize reduction and hedge future rates.</li>
-                  <li>📊 We recommend an energy audit to capture quick efficiency wins before final sizing.</li>
-                  <li>💰 We can also review your tariff tier to ensure you’re on the optimal plan.</li>
-                </ul>
-              </div>
-            )}
+      <>
+        <div className="row g-3">
+          <div className="col-12">
+            <div className="alert alert-success mb-2">
+              <div className="fw-bold">Recommended system: {recommendedType}</div>
+              <div>{typeMsg}</div>
+              <div><FontAwesomeIcon icon={faSolarPanel} className='text-primary me-1' /> {formatNumber(data.panels, 0)} panels <strong>(~{formatNumber(round(data.systemKw, 1), 1)} kW)</strong></div>
+              <div>{areaMsg}</div>
+              <div>{areaAlertMessage}</div>
+              {hugeBill && (
+                <div className="alert alert-warning mt-2 mb-0 py-2">
+                  <div className="fw-semibold">High bill focus</div>
+                  <ul className="mb-0 ps-3">
+                    <li>⚡ Higher ROI potential — expect faster payback with your current bill level.</li>
+                    <li>💡 Consider upsizing the system by ~20-30% to maximize reduction and hedge future rates.</li>
+                    <li>📊 We recommend an energy audit to capture quick efficiency wins before final sizing.</li>
+                    <li>💰 We can also review your tariff tier to ensure you’re on the optimal plan.</li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {hasMonthlyBill || hasGrid ? (
+          {hasMonthlyBill || hasGrid ? (
+            <div className="col-md-12">
+              <div className="card h-100 shadow-sm">
+                <div className="card-body">
+                  <h6 className="card-title">Electricity Costs (with VAT)</h6>
+                  <ul className="mb-0">
+                    <li>Monthly bill (before solar): {formatNumber(data.monthlyBillComputed, 2)} SAR</li>
+                    <li>Effective tariff: {formatNumber(data.effectiveKwhPrice, 3)} SAR/kWh</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
           <div className="col-md-12">
             <div className="card h-100 shadow-sm">
               <div className="card-body">
-                <h6 className="card-title">Electricity Costs (with VAT)</h6>
+                <h6 className="card-title">Solar Production &amp; Savings</h6>
                 <ul className="mb-0">
-                  <li>Monthly bill (before solar): {formatNumber(data.monthlyBillComputed, 2)} SAR</li>
-                  <li>Effective tariff: {formatNumber(data.effectiveKwhPrice, 3)} SAR/kWh</li>
+                  <li>Estimated annual solar production: {formatNumber(data.annualProdKwh, 0)} kWh</li>
+                  <li>Annual savings: {formatNumber(data.annualSavingsSar, 0)} SAR</li>
+                  <li>Payback period: {data.paybackYears === Infinity ? 'N/A' : `${formatNumber(data.paybackYears, 2)} years`}</li>
+                  <li>25-year gross savings: {formatNumber(data.lifetimeGrossSavings, 0)} SAR</li>
+                  <li>25-year net savings (after cost): {formatNumber(data.lifetimeNetSavings, 0)} SAR</li>
                 </ul>
               </div>
             </div>
           </div>
-        ) : null}
 
-        <div className="col-md-12">
-          <div className="card h-100 shadow-sm">
-            <div className="card-body">
-              <h6 className="card-title">Solar Production &amp; Savings</h6>
-              <ul className="mb-0">
-                <li>Estimated annual solar production: {formatNumber(data.annualProdKwh, 0)} kWh</li>
-                <li>Annual savings: {formatNumber(data.annualSavingsSar, 0)} SAR</li>
-                <li>Payback period: {data.paybackYears === Infinity ? 'N/A' : `${formatNumber(data.paybackYears, 2)} years`}</li>
-                <li>25-year gross savings: {formatNumber(data.lifetimeGrossSavings, 0)} SAR</li>
-                <li>25-year net savings (after cost): {formatNumber(data.lifetimeNetSavings, 0)} SAR</li>
-              </ul>
+          <div className="col-12">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h6 className="card-title">System Cost Estimate — {selectedPricing.label}</h6>
+                <ul className="mb-0">
+                  {/* <li>Cost per panel: {formatNumber(selectedPricing.costPerPanel, 0)} SAR</li> */}
+                  <li>Panels allowance (included in package): {formatNumber(data.panelsCost, 0)} SAR</li>
+                  {/* <li >Inverter + install allowance (included): {formatNumber(data.inverterInstallBase, 0)} SAR</li> */}
+                  <li className="fw-semibold">Package price (all-in, on-grid baseline): ~{formatNumber(data.packagePriceSar, 0)} SAR</li>
+                  {data.batteryCost > 0 && (
+                    <li>Battery allowance (~{formatNumber(data.batteryKwhNeeded, 1)} kWh): +{formatNumber(data.batteryCost, 0)} SAR</li>
+                  )}
+                  {data.inverterUpgradeAdder > 0 && (
+                    <li>Hybrid/Off-grid inverter upgrade: +{formatNumber(data.inverterUpgradeAdder, 0)} SAR</li>
+                  )}
+                  {data.systemKw > 500 && (
+                    <li className="text-warning fw-semibold">For systems above 500 kW, please contact a professional engineer for a business-grade custom design.</li>
+                  )}
+                  {/* <li className="fw-bold text-primary">Estimated total system cost (package + any batteries/upgrades): {formatNumber(data.totalSystemCost, 0)} SAR</li> */}
+                  {/* <li className="text-muted">Package already includes panels, inverter, and balance-of-system; allowances shown above are not added on top.</li> */}
+
+                </ul>
+                <small className="text-muted">Assumptions: PSH {peakSunHours} h/day, derate 80%, VAT included in electricity bill. Hybrid/Off-grid pricing includes batteries and larger inverter allowances.</small>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="col-12">
-          <div className="card shadow-sm">
-            <div className="card-body">
-              <h6 className="card-title">System Cost Estimate — {selectedPricing.label}</h6>
-              <ul className="mb-0">
-                <li>Cost per panel: {formatNumber(selectedPricing.costPerPanel, 0)} SAR</li>
-                <li>Total panels cost: {formatNumber(data.panelsCost, 0)} SAR</li>
-                <li>Base inverter + installation (est. 35%): {formatNumber(data.inverterInstallBase, 0)} SAR</li>
-                <li>Package price by output (on-grid baseline): {formatNumber(data.packagePriceSar, 0)} SAR</li>
-                {data.batteryCost > 0 && (
-                  <li>Battery allowance (~{formatNumber(data.batteryKwhNeeded, 1)} kWh): {formatNumber(data.batteryCost, 0)} SAR</li>
-                )}
-                {data.inverterUpgradeAdder > 0 && (
-                  <li>Hybrid/Off-grid inverter upgrade: {formatNumber(data.inverterUpgradeAdder, 0)} SAR</li>
-                )}
-                <li className="fw-bold text-primary">Estimated total system cost: {formatNumber(data.totalSystemCost, 0)} SAR</li>
-                <li className="text-muted">(Panel parts: {formatNumber(data.panelsCost, 0)} SAR; inverter/install base: {formatNumber(data.inverterInstallBase, 0)} SAR; package baseline includes balance-of-system)</li>
-
-              </ul>
-              <small className="text-muted">Assumptions: PSH {peakSunHours} h/day, derate 80%, VAT included in electricity bill. Hybrid/Off-grid pricing includes batteries and larger inverter allowances.</small>
+        <div className="row mt-4">
+          <div className="col-12 mb-3">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <div className="d-flex justify-content-between align-items-center mb-2">
+                  <h6 className="mb-0">
+                    <FontAwesomeIcon icon={faTachometerAlt} className='text-primary me-2' />
+                    Quick snapshot
+                  </h6>
+                  <small className="text-muted">Auto-updates as you edit</small>
+                </div>
+                <div className="row g-2 text-center">
+                  <div className="col">
+                    <div className="border rounded p-2 h-100">
+                      <div className="small text-muted">Consumption</div>
+                      <div className="fw-semibold">{typeof monthlyKWh === 'number' && monthlyKWh > 0 ? `${formatNumber(monthlyKWh, 0)} kWh` : '—'}</div>
+                      {syncConsumption && <span className="badge bg-primary-subtle text-primary mt-1">Synced from bill</span>}
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="border rounded p-2 h-100">
+                      <div className="small text-muted">Bill</div>
+                      <div className="fw-semibold">{typeof monthlyBill === 'number' && monthlyBill > 0 ? `${formatNumber(monthlyBill, 2)} SAR` : '—'}</div>
+                      {syncBill && <span className="badge bg-primary-subtle text-primary mt-1">Synced from kWh</span>}
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="border rounded p-2 h-100">
+                      <div className="small text-muted">Power supply</div>
+                      <div className="fw-semibold">
+                        {powerSupplyType === 'grid' ? 'Grid only'
+                          : powerSupplyType === 'mixed' ? `Mixed (${formatNumber(generatorShare, 0)}% gen)`
+                            : powerSupplyType === 'generator' ? 'Generator only'
+                              : 'No grid'}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="border rounded p-2 h-100">
+                      <div className="small text-muted">Area</div>
+                      <div className="fw-semibold">{typeof availableArea === 'number' && availableArea > 0 ? `${formatNumber(availableArea, 0)} m²` : '—'}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   };
 
@@ -327,6 +459,29 @@ const SolarApplicationForm: React.FC = () => {
     window.open(url, '_blank', 'noopener');
   };
 
+  const handlePrintRecommendation = () => {
+    window.print();
+  };
+
+  const handleShareLink = async (e?: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    if (e) e.preventDefault();
+    const shareUrl = buildShareUrl();
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: 'Solar system planner', url: shareUrl });
+        return;
+      }
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        await navigator.clipboard.writeText(shareUrl);
+        window.alert('Shareable link copied to clipboard.');
+        return;
+      }
+    } catch (err) {
+      console.error('Share failed', err);
+    }
+    window.prompt('Copy this link to share:', shareUrl);
+  };
+
   const runCalculation = (payload?: Partial<SolarCalcHistoryEntry['input']>, skipHistory = false) => {
     const nextInput = {
       monthlyKWh: typeof monthlyKWh === 'number' ? monthlyKWh : undefined,
@@ -345,6 +500,16 @@ const SolarApplicationForm: React.FC = () => {
       generatorShare,
       ...payload,
     };
+
+    // If generator-only/no-grid and user provided only a bill, derive kWh from generator cost
+    let derivedMonthlyKWh = nextInput.monthlyKWh;
+    if ((nextInput.powerSupplyType === 'generator' || nextInput.powerSupplyType === 'none')
+      && (!derivedMonthlyKWh || derivedMonthlyKWh <= 0)
+      && typeof nextInput.monthlyBill === 'number' && nextInput.monthlyBill > 0
+      && typeof nextInput.generatorCostPerKwh === 'number' && nextInput.generatorCostPerKwh > 0) {
+      derivedMonthlyKWh = nextInput.monthlyBill / nextInput.generatorCostPerKwh;
+    }
+    nextInput.monthlyKWh = derivedMonthlyKWh;
 
     const resolvedPowerSupply = nextInput.powerSupplyType ?? (nextInput.hasGrid ? 'grid' : 'none');
     const resolvedHasGrid = resolvedPowerSupply === 'grid' || resolvedPowerSupply === 'mixed';
@@ -452,9 +617,12 @@ const SolarApplicationForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-md-11">
             <div className="row">
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <div className="card card-form-holder p-4">
-                  <h4 className='display-6 text-center mb-4'>Tell us about your needs</h4>
+                  <h4 className='display-6 text-center mb-4'>
+                    <FontAwesomeIcon icon={faSolarPanel} className='text-primary me-2' />
+                    Solar system planner
+                  </h4>
                   <form className='row align-items-baseline' onSubmit={handleSubmit}>
 
 
@@ -462,27 +630,42 @@ const SolarApplicationForm: React.FC = () => {
                       <div className='row'>
 
                         <div className="col mb-3">
-                          <div className=' card p-2'>
+                          <div className='card p-2 input-card'>
+
                             <label className="form-label d-flex align-items-center flex-column">
                               <FontAwesomeIcon icon={faTachometerAlt} className='fa-2x text-primary me-1' />
                               <small className='text-center'>Monthly consumption</small>
                             </label>
                             <input type="number" className="form-control text-center" value={monthlyKWh as any} onChange={e => setMonthlyKWh(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
+
                             <div className="d-flex justify-content-end">
                               <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="syncConsumption" checked={syncConsumption} onChange={e => setSyncConsumption(e.target.checked)} />
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  role="switch"
+                                  id="syncConsumption"
+                                  checked={syncConsumption}
+                                  onChange={e => {
+                                    const next = e.target.checked;
+                                    setSyncConsumption(next);
+                                    if (next) setSyncBill(false);
+                                  }}
+                                />
                                 <label className="form-check-label small" htmlFor="syncConsumption">Sync</label>
                               </div>
                             </div>
-                            <small className="form-text text-muted">
+                            <small className="form-text text-muted helper-text">
                               Average monthly energy consumption (kWh) (optional).
                               Leave blank to estimate from monthly bill.
                             </small>
                           </div>
+
                         </div>
 
                         <div className="col mb-3">
-                          <div className=' card p-2'>
+                          <div className='card p-2 input-card'>
+
                             <label className="form-label d-flex align-items-center flex-column">
                               {/* <span className='fs-5 text-primary fw-bold me-1'>&#x20C1;</span> */}
                               <FontAwesomeIcon icon={faMoneyBill} className='fa-2x text-primary me-1' />
@@ -493,13 +676,26 @@ const SolarApplicationForm: React.FC = () => {
                               <input type="number" className="form-control text-center" value={monthlyBill as any} onChange={e => setMonthlyBill(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
                               <span className="input-group-text text-primary bg-white">&#x20C1;</span>
                             </div>
+
                             <div className="d-flex justify-content-end">
                               <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="syncBill" checked={syncBill} onChange={e => setSyncBill(e.target.checked)} />
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  role="switch"
+                                  id="syncBill"
+                                  checked={syncBill}
+                                  onChange={e => {
+                                    const next = e.target.checked;
+                                    setSyncBill(next);
+                                    if (next) setSyncConsumption(false);
+                                  }}
+                                />
                                 <label className="form-check-label small" htmlFor="syncBill">Sync</label>
                               </div>
                             </div>
-                            <small className="form-text text-muted">
+
+                            <small className="form-text text-muted helper-text">
                               Average monthly electricity bill (optional).
                               Leave blank if unknown.
                             </small>
@@ -507,19 +703,13 @@ const SolarApplicationForm: React.FC = () => {
                         </div>
 
                         <div className="col mb-3">
-                          <div className=' card p-2'>
+                          <div className='card p-2 input-card'>
                             <label className="form-label d-flex align-items-center flex-column">
                               <FontAwesomeIcon icon={faRulerCombined} className='fa-2x text-primary me-1' />
                               <small className='text-center'>Area</small>
                             </label>
                             <input type="number" className="form-control text-center" value={availableArea as any} onChange={e => setAvailableArea(e.target.value === '' ? '' : Number(e.target.value))} min={0} />
-                            <div className="d-flex justify-content-end">
-                              <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="syncArea" checked={syncArea} onChange={e => setSyncArea(e.target.checked)} />
-                                <label className="form-check-label small" htmlFor="syncArea">Sync</label>
-                              </div>
-                            </div>
-                            <small className="form-text text-muted">
+                            <small className="form-text text-muted helper-text">
                               Available installation area (m²) (optional).
                               Leave blank if unknown.
                             </small>
@@ -528,7 +718,7 @@ const SolarApplicationForm: React.FC = () => {
 
                         {showAdvanced && (
                           <div className="col mb-3">
-                            <div className='card p-2'>
+                            <div className='card p-2 input-card'>
                               <label className="form-label d-flex align-items-center flex-column">
                                 <FontAwesomeIcon icon={faSun} className='fa-2x text-primary me-1' />
                                 <small className='text-center'>Peak Sun Hours (PSH)</small>
@@ -537,12 +727,21 @@ const SolarApplicationForm: React.FC = () => {
                                 type="number"
                                 className="form-control text-center"
                                 value={peakSunHours}
-                                onChange={e => setPeakSunHours(Number(e.target.value) || 5)}
-                                min={0}
+                                onChange={e => {
+                                  const next = Number(e.target.value);
+                                  if (!Number.isFinite(next)) {
+                                    setPeakSunHours(5);
+                                    return;
+                                  }
+                                  const clamped = Math.min(Math.max(next, 2), 7);
+                                  setPeakSunHours(clamped);
+                                }}
+                                min={2}
+                                max={7}
                                 step={0.1}
                               />
-                              <small className="form-text text-muted">
-                                Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA.
+                              <small className="form-text text-muted helper-text">
+                                Average PSH: ~6 hours (summer), ~4 hours (winter) in KSA. Allowed range: 2–7.
                               </small>
                             </div>
                           </div>
@@ -552,8 +751,8 @@ const SolarApplicationForm: React.FC = () => {
                     <div className="col-md-12 mb-3">
                       <div className="mb-3 mt-4">
                         <h3 className='display-1 fs-4'>
-                          <FontAwesomeIcon icon={faSolarPanel} className='text-primary' />
-                          Primary use</h3>
+                          <FontAwesomeIcon icon={faHome} className='text-primary' />
+                          Site type</h3>
                         <div className='card p-3'>
                           <div className='row justify-content-center flex-row'>
 
@@ -658,8 +857,8 @@ const SolarApplicationForm: React.FC = () => {
 
                     <div className='col-md-12'>
                       <h3 className='display-1 fs-4'>
-                        <FontAwesomeIcon icon={faSolarPanel} className='text-primary' />
-                        Solar Solutions
+                        <FontAwesomeIcon icon={faBolt} className='text-primary' />
+                        Power &amp; backup options
                       </h3>
                       <div className='card p-3 mb-3'>
 
@@ -684,7 +883,7 @@ const SolarApplicationForm: React.FC = () => {
                             </div>
                           </div>
 
-                          {powerSupplyType !== 'grid' && powerSupplyType !== 'none' && (
+                          {(powerSupplyType === 'generator' || powerSupplyType === 'mixed' || (powerSupplyType === 'none' && typeof monthlyBill === 'number' && monthlyBill > 0)) && (
                             <div className="row g-2 mt-2">
                               <div className="col-md-6">
                                 <label className="form-label">Generator cost (SAR/kWh)</label>
@@ -696,7 +895,7 @@ const SolarApplicationForm: React.FC = () => {
                                   min={0}
                                   step={0.05}
                                 />
-                                <div className="form-text">Approximate fuel+O&M cost per kWh.</div>
+                                <div className="form-text">Approximate fuel+O&M cost per kWh.{powerSupplyType === 'none' ? ' No grid: adjust this rate to derive kWh from your bill.' : ''}</div>
                               </div>
                               {powerSupplyType === 'mixed' && (
                                 <div className="col-md-6">
@@ -739,7 +938,7 @@ const SolarApplicationForm: React.FC = () => {
 
 
 
-                        
+
                       </div>
                     </div>
 
@@ -774,6 +973,14 @@ const SolarApplicationForm: React.FC = () => {
                           Show advanced options</label>
                       </div>
                       <div className="d-flex w-100 justify-content-end gap-2">
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={handleShareLink}
+                          title="Copy or share a link with your current inputs"
+                        >
+                          Share link
+                        </button>
                         <button className="btn btn-primary d-flex w-100 justify-content-center flex-row align-items-center" type="submit">
                           <FontAwesomeIcon icon={faSave} className='fa-3x' />
                           <small className='ms-2'>
@@ -785,10 +992,17 @@ const SolarApplicationForm: React.FC = () => {
                   </form>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="card card-form-holder p-4">
+              <div className="col-md-5">
+                <div className="card card-form-holder p-4" id="recommendationPrint">
                   <div className="mt-4">
-                    <h4 className='display-6 text-center mb-4'>Recommendation</h4>
+                    <div className="print-only print-brand">
+                      <img src="/src/assets/solar/solar-logo-icon.png" alt="AQTRACO" />
+                      <img src="/src/assets/solar/solar-logo-txt.png" alt="AQTRACO" />
+                    </div>
+                    <h4 className='display-6 text-center mb-4'>
+                      <FontAwesomeIcon icon={faHandHoldingUsd} className='text-primary me-2' />
+                      Recommendation
+                    </h4>
                     {result && (
                       <>
                         <div className='container' style={{ whiteSpace: 'pre-wrap' }}>
@@ -797,19 +1011,37 @@ const SolarApplicationForm: React.FC = () => {
                         <p className="mt-3 text-muted">
                           Approximation notice: This calculator provides an estimate and is not 100% accurate. Final system design and pricing require an engineer assessment and detailed load study. Contact us to get a tailored calculation and quote that fits your business.
                         </p>
+                        <div className="print-only print-qr">
+                          <div className="mb-2">
+                            <a href={pageUrl} title="Back to calculator">{pageUrl || 'https://aqtraco.com/solar-solutions'}</a>
+                          </div>
+                          <img
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pageUrl || 'https://aqtraco.com/solar-solutions')}`}
+                            alt="QR to calculator"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handlePrintRecommendation}
+                          className="btn btn-outline-secondary w-100 mt-2 no-print"
+                          title="Print recommendation section"
+                        >
+                          <FontAwesomeIcon icon={faPrint} className='me-2' />
+                          Print Recommendation
+                        </button>
                       </>
                     )}
                     <a
                       href="#"
                       onClick={handleWhatsAppClick}
-                      className="btn btn-success btn-lg w-100 mt-3"
+                      className="btn btn-success btn-lg w-100 mt-3 no-print"
                       title="Copy details and open WhatsApp"
                     >
                       <FontAwesomeIcon icon={faWhatsapp} className='me-2' />
                       Contact via WhatsApp for Free Consultant Quote
                     </a>
                   </div>
-                  <Link to="/solar-solutions" className="btn my-2 btn-outline-secondary">Back to Solar systems</Link>
+                  <Link to="/solar-solutions" className="btn my-2 btn-outline-secondary no-print">Back to Solar systems</Link>
                 </div>
               </div>
             </div>
@@ -821,7 +1053,10 @@ const SolarApplicationForm: React.FC = () => {
             <div className="card shadow-sm">
               <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center mb-2">
-                  <h5 className="card-title mb-0">Saved Calculations</h5>
+                  <h5 className="card-title mb-0">
+                    <FontAwesomeIcon icon={faSave} className='text-primary me-2' />
+                    Saved calculations
+                  </h5>
                   <small className="text-muted">Click a row to reuse inputs; changes auto-recalculate.</small>
                 </div>
                 {history.length === 0 ? (

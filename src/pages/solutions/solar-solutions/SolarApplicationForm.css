@@ -33,3 +33,60 @@
 .power-icon svg {
   color: #f5c518;
 }
+
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+    #recommendationPrint, #recommendationPrint * {
+        visibility: visible !important;
+    }
+    #recommendationPrint {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    .no-print {
+        display: none !important;
+    }
+    .print-brand {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .print-brand img {
+        max-height: 60px;
+        width: auto;
+        margin: 0 6px;
+    }
+    .print-qr {
+        text-align: center;
+        margin-top: 16px;
+    }
+    .print-qr img {
+        max-height: 180px;
+        width: auto;
+        display: inline-block;
+    }
+}
+
+.print-only {
+    display: none !important;
+}
+@media print {
+    .print-only {
+        display: block !important;
+    }
+}
+
+.input-card .helper-text {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+}
+
+.input-card:hover .helper-text,
+.input-card:focus-within .helper-text {
+    opacity: 1;
+    max-height: 120px;
+}
