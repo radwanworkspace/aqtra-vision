@@ -4,7 +4,7 @@
   --hero-shadow: none;
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   border-radius: var(--hero-radius);
   overflow: hidden;
   background: #0b1d16;
@@ -247,18 +247,19 @@
 
 @media (max-width: 1024px) {
   .hero-slide__content {
-    max-width: 540px;
+    max-width: 80vw;
   }
 
   .hero-slide__video {
+    display: none;
     width: min(320px, 38vw);
   }
 }
 
 @media (max-width: 768px) {
   .hero-slider {
-    border-radius: 18px;
-    min-height: 78vh;
+    /* border-radius: 18px; */
+    min-height: 90vh;
   }
 
   .hero-slide {
@@ -275,13 +276,14 @@
     font-size: clamp(1.8rem, 5vw, 2.4rem);
   }
 
-  .hero-slide__video {
+  /* .hero-slide__video {
+    display: none;
     position: static;
     width: 100%;
     margin-top: 1rem;
     transform: translateY(0) scale(1);
     opacity: 1;
-  }
+  } */
 
   .hero-slide__video:hover {
     transform: scale(1.01);
