@@ -39,7 +39,7 @@ const Index = () => {
     <div className="">
 
       {/* Hero Slider */}
-      <section style={{ padding: `${heroPadding}px`, transition: 'padding 0.35s ease' }} >
+      <section style={{ padding: `${heroPadding}px`, transition: 'padding 0.35s ease', backgroundColor: '#e6f7f0' }} >
         <HeroSlider />
       </section>
 

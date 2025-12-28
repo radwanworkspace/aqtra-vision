@@ -47,8 +47,8 @@ const Footer = () => {
     <>
       {/* <div id="footer-space" style={{ marginBottom: FooterSpaceHeight }}></div> */}
       {/* <hr className='m-0' /> */}
-  
-      <footer className="py-5">
+
+      <footer>
 
         <div className="container">
           <div className="row mb-4">
@@ -104,9 +104,9 @@ const Footer = () => {
               <img src="/src/assets/saudi_vision_2030_logo.svg" style={{ height: '100px' }} alt="Saudi Vision 2030 Logo" className="mb-4 float-end" />
             </div>
           </div>
-
           {/* Social Links */}
-          <div className="row mt-4 pt-3 border-top border-secondary">
+          <div className="row mt-4 pt-3">
+            <hr className="hr mb-5" />
             <div className="col-md-6 d-flex flex-row justify-content-center justify-content-md-start my-2 text-start">
               <p className="mb-0">&copy; {currentYear} AQTRA. All rights reserved.</p>
             </div>

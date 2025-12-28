@@ -1,22 +1,5 @@
 [
-  {
-    "id": "solar-energy",
-    "isHomeFeatured": true,
-    "logo": "/src/assets/solar/solar-logo.png",
-    "logoText": "/src/assets/solar/solar-logo-txt.png",
-    "logoIcon": "/src/assets/solar/solar-logo-icon.png",
-    "title": "Solar Energy",
-    "description": "Sustainable power solutions for your future",
-    "videoUrl": "/videos/solar_energy.mp4",
-    "icon": "Leaf",
-    "items": [
-      "Solar Panel Installation",
-      "On/Off/Hybrid/Pumping Grid Systems",
-      "Battery Storage",
-      "EPC & Maintenance"
-    ],
-    "color": "text-success"
-  },
+
   {
     "id": "smart-home-systems",
     "isHomeFeatured": true,
@@ -35,6 +18,24 @@
       "HVAC Automation"
     ],
     "color": "text-primary"
+  },
+    {
+    "id": "solar-energy",
+    "isHomeFeatured": true,
+    "logo": "/src/assets/solar/solar-logo.png",
+    "logoText": "/src/assets/solar/solar-logo-txt.png",
+    "logoIcon": "/src/assets/solar/solar-logo-icon.png",
+    "title": "Solar Energy",
+    "description": "Sustainable power solutions for your future",
+    "videoUrl": "/videos/solar_energy.mp4",
+    "icon": "Leaf",
+    "items": [
+      "Solar Panel Installation",
+      "On/Off/Hybrid/Pumping Grid Systems",
+      "Battery Storage",
+      "EPC & Maintenance"
+    ],
+    "color": "text-success"
   },
   {
     "id": "hvac-chiller",
