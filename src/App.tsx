@@ -10,6 +10,7 @@ import "smoothscroll-for-websites";
 import ServicesPage from "./pages/ServicesPage";
 import ServicePage from "./pages/ServicePage";
 import ContactPage from "./pages/ContactPage";
+import Solutions from "./pages/solutions/Solutions";
 import HVACSolutions from "./pages/solutions/HVACSolutions";
 import SolarSolutions from "./pages/solutions/SolarSolutions";
 import OnGrid from "./pages/solutions/solar-solutions/OnGrid";
@@ -61,6 +62,7 @@ const App = () => {
               <Route path="/services/:id" element={<ServicePage />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/solutions" element={<Solutions />} />
               <Route path="/hvac-solutions" element={<HVACSolutions />} />
               <Route path="/solar-solutions" element={<SolarSolutions />} />
               <Route path="/solar/on-grid" element={<OnGrid />} />

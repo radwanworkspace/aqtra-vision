@@ -85,7 +85,8 @@
   /* Override Bootstrap badge colors */
   --bs-badge-color: #119d60;
 
-
+--bs-primary-bg-subtle: #e6f7f0;
+--bs-primary-text-subtle: #0e8652;
   font-size: 18px;
 }
 

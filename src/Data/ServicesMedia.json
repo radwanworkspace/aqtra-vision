@@ -51,7 +51,7 @@
         "title": "Plumbing",
         "description": "<p>Plumbing systems are essential for water supply and drainage. They include installations for heaters, leak detection, and solar hot water systems, ensuring efficient water management.</p>",
         "videoUrl": "/src/assets/plumbing/1.mp4",
-        "headerImage": "/src/assets/plumbing/6.jpg#position=0px,-934px",
+        "headerImage": "/src/assets/plumbing/8.webp#position=0px,-934px",
         "images": [
             "/src/assets/plumbing/1.jpg",
             "/src/assets/plumbing/2.jpg",
@@ -104,7 +104,7 @@
         "title": "Network & Security",
         "description": "<p>Network and security solutions include structured cabling, Wi-Fi, CCTV, and access control systems. They provide modern IT infrastructure and enhanced security.</p>",
         "videoUrl": "/src/assets/network/1.mp4",
-        "headerImage": "/src/assets/network/1.jpg",
+        "headerImage": "/src/assets/network/5.jpg",
         "images": [
             "/src/assets/network/1.jpg",
             "/src/assets/network/2.jpg",
