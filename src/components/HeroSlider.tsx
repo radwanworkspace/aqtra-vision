@@ -4,18 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './HeroSlider.css';
 
-import hvacBg from '@/assets/hvac/s1.png';
-import electricalBg from '@/assets/electrical/s1.png';
-import smartHomeBg from '@/assets/smart_home/s1.png';
-import solarBg from '@/assets/solar/s1.png';
-import networkBg from '@/assets/network/s1.png';
-import landscapeBg from '@/assets/landscape/s1.png';
 import calculatorSVG from '@/assets/svg/calc-icon.svg';
 
 import solarLoop from '@/assets/solar/v2.mp4';
 import networkLoop from '@/assets/network/1.mp4';
-import electricLoop from '@/assets/electrical/v1.mp4';
-import landscapeLoop from '@/assets/landscape/v1.mp4';
+import landscapeLoop from '@/assets/landscape/v2.mp4';
 
 type HeroService = {
     id: string;
@@ -32,7 +25,7 @@ const services: HeroService[] = [
         id: 'landscape-irrigation',
         title: 'Landscape & Irrigation',
         description: 'Sustainable landscape design and smart irrigation systems that conserve water and enhance outdoor spaces.',
-        image: landscapeBg,
+        image: '/src/assets/landscape/1-1.png',
         video: landscapeLoop,
         link: '/services/landscape-irrigation',
         eyebrow: 'Green Spaces',
@@ -41,7 +34,7 @@ const services: HeroService[] = [
         id: 'hvac-chiller',
         title: 'HVAC & Chiller',
         description: 'High-efficiency climate systems, chilled water plants, and lifecycle maintenance for mission-critical facilities.',
-        image: hvacBg,
+        image: '/src/assets/hvac/s3.png',
         video: '',
         link: '/services/hvac-chiller',
         eyebrow: 'Precision Air & Cooling',
@@ -50,8 +43,8 @@ const services: HeroService[] = [
         id: 'electrical',
         title: 'Electrical',
         description: 'Safe, code-compliant power distribution, backup generation, and lighting built for resilient operations.',
-        image: electricalBg,
-        video: electricLoop,
+        image: '/src/assets/electrical/s2.png',
+        video: '',
         link: '/services/electrical',
         eyebrow: 'Power That Performs',
     },
@@ -59,7 +52,7 @@ const services: HeroService[] = [
         id: 'smart-home-systems',
         title: 'Smart Home & Automation',
         description: 'Integrated controls, security, and ambience that learn how you live and respond instantly.',
-        image: smartHomeBg,
+        image: '/src/assets/smart_home/s2.png',
         video: '',
         link: '/services/smart-home-systems',
         eyebrow: 'Connected Living',
@@ -68,7 +61,7 @@ const services: HeroService[] = [
         id: 'solar-energy',
         title: 'Solar Energy',
         description: 'Bankable PV design, hybrid storage, and intelligent monitoring delivering clean, stable energy.',
-        image: solarBg,
+        image: '/src/assets/solar/s1.png',
         video: solarLoop,
         link: '/solar-solutions',
         eyebrow: 'Sustainable Power',
@@ -77,11 +70,29 @@ const services: HeroService[] = [
         id: 'network-security',
         title: 'Network & Security',
         description: 'Carrier-grade cabling, Wi-Fi, CCTV, and access control engineered for secure, scalable uptime.',
-        image: networkBg,
+        image: '/src/assets/network/s4.png',
         video: networkLoop,
         link: '/services/network-security',
         eyebrow: 'Secure Connectivity',
     },
+    {
+        id: 'plumbing',
+        title: 'Plumbing',
+        description: 'Efficient water systems, leak detection, and solar hot water solutions for modern buildings.',
+        image: '/src/assets/plumbing/s2.png',
+        video: '',
+        link: '/services/plumbing',
+        eyebrow: 'Water Management',
+    },
+    {
+        id: 'fire-fighting',
+        title: 'Fire Alarm & Fighting',
+        description: 'Comprehensive fire safety systems including alarms, suppression, and emergency lighting.',
+        image: '/src/assets/fire/s3.png',
+        video: '',
+        link: '/services/fire-fighting',
+        eyebrow: 'Life Safety',
+    }
 ];
 
 const SLIDE_DURATION = 7200;

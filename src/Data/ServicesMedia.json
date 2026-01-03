@@ -5,7 +5,7 @@
         "solutionPage": "/solar-solutions",
         "description": "<p>Solar energy is a clean and renewable source of power that harnesses the sun's rays to generate electricity. It is an essential solution for reducing carbon emissions and achieving energy independence.</p>",
         "videoUrl": "/src/assets/solar/1.mp4",
-        "headerImage": "/src/assets/solar/2.jpg",
+        "headerImage": "/src/assets/solar/s1.png",
         "images": [
             "/src/assets/solar/1.jpg",
             "/src/assets/solar/2.jpg",
@@ -18,7 +18,7 @@
         "title": "Smart Home Systems",
         "description": "<p>Smart home systems provide advanced automation for modern living, including smart lighting, locks, and voice-controlled devices. They enhance convenience, security, and energy efficiency.</p>",
         "videoUrl": "/src/assets/smart_home/1.mp4",
-        "headerImage": "/src/assets/smart_home/2.jpg",
+        "headerImage": "/src/assets/smart_home/s2.png",
         "images": [
             "/src/assets/smart_home/1.jpg",
             "/src/assets/smart_home/2.jpg",
@@ -33,7 +33,7 @@
         "solutionPage": "/hvac-solutions",
         "description": "<p>HVAC and chiller systems ensure optimal climate control and air quality. They are vital for maintaining comfortable and healthy indoor environments in residential and commercial spaces.</p>",
         "videoUrl": "/src/assets/hvac/1.mp4",
-        "headerImage": "/src/assets/hvac/8.jpg",
+        "headerImage": "/src/assets/hvac/s4.png",
         "images": [
             "/src/assets/hvac/1.jpg",
             "/src/assets/hvac/2.jpg",
@@ -51,7 +51,7 @@
         "title": "Plumbing",
         "description": "<p>Plumbing systems are essential for water supply and drainage. They include installations for heaters, leak detection, and solar hot water systems, ensuring efficient water management.</p>",
         "videoUrl": "/src/assets/plumbing/1.mp4",
-        "headerImage": "/src/assets/plumbing/8.webp#position=0px,-934px",
+        "headerImage": "/src/assets/plumbing/s2.png#position=0px,-934px",
         "images": [
             "/src/assets/plumbing/1.jpg",
             "/src/assets/plumbing/2.jpg",
@@ -72,7 +72,7 @@
         "title": "Fire Alarm and Fighting",
         "description": "<p>Fire fighting systems provide comprehensive safety solutions, including fire alarms, suppression systems, and emergency lighting to protect lives and property.</p>",
         "videoUrl": "/src/assets/fire/1.mp4",
-        "headerImage": "/src/assets/fire/4.jpg#position=0px,-650px",
+        "headerImage": "/src/assets/fire/s3.png#position=0px,-650px",
         "images": [
             "/src/assets/fire/1.jpg",
             "/src/assets/fire/2.jpg",
@@ -90,7 +90,7 @@
         "title": "Electrical",
         "description": "<p>Electrical installations include power distribution, panels, lighting, and backup systems. They ensure reliable and safe electricity supply for various applications.</p>",
         "videoUrl": "/src/assets/electrical/1.mp4",
-        "headerImage": "/src/assets/electrical/1.jpg",
+        "headerImage": "/src/assets/electrical/s2.png",
         "images": [
             "/src/assets/electrical/1.jpg",
             "/src/assets/electrical/2.jpg",
@@ -104,7 +104,7 @@
         "title": "Network & Security",
         "description": "<p>Network and security solutions include structured cabling, Wi-Fi, CCTV, and access control systems. They provide modern IT infrastructure and enhanced security.</p>",
         "videoUrl": "/src/assets/network/1.mp4",
-        "headerImage": "/src/assets/network/5.jpg",
+        "headerImage": "/src/assets/network/s4.png",
         "images": [
             "/src/assets/network/1.jpg",
             "/src/assets/network/2.jpg",
@@ -118,13 +118,9 @@
         "title": "Landscape & Irrigation",
         "description": "<p>Outdoor water management solutions include irrigation systems, landscape lighting, water features, and drainage solutions to enhance and maintain outdoor spaces.</p>",
         "videoUrl": "/src/assets/landscape/v1.mp4",
-        "headerImage": "/src/assets/landscape/1.jpg",
+        "headerImage": "/src/assets/landscape/1-1.png",
         "images": [
-            "/src/assets/landscape/1.jpg",
-            "/src/assets/landscape/2.jpg",
-            "/src/assets/landscape/3.jpg",
-            "/src/assets/landscape/4.jpg",
-            "/src/assets/landscape/5.jpg"
+            "/src/assets/landscape/1-1.png"
         ]
     }
 ]
